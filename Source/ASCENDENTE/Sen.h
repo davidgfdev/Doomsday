@@ -36,6 +36,8 @@ private:
 
 	void Aim(float Value);
 	void Turn(float Value);
+	void MoveForward(float Value);
+	void Strafe(float Value);
 
 	APlayerController *SenPlayerController;
 };

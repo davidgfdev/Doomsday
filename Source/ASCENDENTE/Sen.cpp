@@ -4,6 +4,7 @@
 #include "Camera/CameraComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/SpringArmComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 ASen::ASen()
 {
@@ -21,6 +22,8 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
 
     PlayerInputComponent->BindAxis(TEXT("Aim"), this, &ASen::Aim);
     PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ASen::Turn);
+    PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ASen::MoveForward);
+    PlayerInputComponent->BindAxis(TEXT("Strafe"), this, &ASen::Strafe);
 }
 
 void ASen::BeginPlay()
@@ -48,4 +51,16 @@ void ASen::Turn(float Value)
         float TurnValue = Value * SensibilityX * DeltaTime;
         SenPlayerController->AddYawInput(TurnValue);
     }
+}
+
+void ASen::MoveForward(float Value)
+{
+    FVector ForwardDirection = UKismetMathLibrary::GetForwardVector(GetActorRotation());
+    AddMovementInput(ForwardDirection, Value);
+}
+
+void ASen::Strafe(float Value)
+{
+    FVector RightDirection = UKismetMathLibrary::GetRightVector(GetActorRotation());
+    AddMovementInput(RightDirection, Value);
 }
