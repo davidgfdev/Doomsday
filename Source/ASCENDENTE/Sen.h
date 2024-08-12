@@ -22,6 +22,9 @@ public:
 
 	virtual void BeginPlay() override;
 
+	// Called every frame
+	virtual void Tick(float DeltaTime) override;
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent *CameraComponent;
@@ -33,11 +36,20 @@ private:
 	float SensibilityX = 180;
 	UPROPERTY(EditAnywhere, Category = "Aim")
 	float SensibilityY = 160;
+	UPROPERTY(EditAnywhere, Category = "Jump")
+	float CoyoteSeconds = 0.3f;
+	UPROPERTY(EditAnywhere, Category = "Jump")
+	float BufferSeconds = 0.1f;
+
+	float CoyoteTime;
+	float BufferTime;
 
 	void Aim(float Value);
 	void Turn(float Value);
 	void MoveForward(float Value);
 	void Strafe(float Value);
+	void StartJump();
+	void StopJump();
 
 	APlayerController *SenPlayerController;
 };

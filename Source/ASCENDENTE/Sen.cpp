@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ASen::ASen()
 {
@@ -24,6 +25,8 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ASen::Turn);
     PlayerInputComponent->BindAxis(TEXT("MoveForward"), this, &ASen::MoveForward);
     PlayerInputComponent->BindAxis(TEXT("Strafe"), this, &ASen::Strafe);
+    PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ASen::StartJump);
+    PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ASen::StopJump);
 }
 
 void ASen::BeginPlay()
@@ -31,6 +34,27 @@ void ASen::BeginPlay()
     Super::BeginPlay();
 
     SenPlayerController = Cast<APlayerController>(GetController());
+}
+
+void ASen::Tick(float DeltaTime)
+{
+    Super::Tick(DeltaTime);
+
+    BufferTime -= DeltaTime;
+
+    if (GetMovementComponent()->IsFalling())
+    {
+        CoyoteTime -= DeltaTime;
+    }
+    else
+    {
+        CoyoteTime = CoyoteSeconds;
+    }
+
+    if (BufferTime >= 0 && CoyoteTime > 0)
+    {
+        Jump();
+    }
 }
 
 void ASen::Aim(float Value)
@@ -63,4 +87,14 @@ void ASen::Strafe(float Value)
 {
     FVector RightDirection = UKismetMathLibrary::GetRightVector(GetActorRotation());
     AddMovementInput(RightDirection, Value);
+}
+
+void ASen::StartJump()
+{
+    BufferTime = BufferSeconds;
+}
+
+void ASen::StopJump()
+{
+    StopJumping();
 }
