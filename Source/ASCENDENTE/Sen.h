@@ -43,6 +43,7 @@ private:
 
 	float CoyoteTime;
 	float BufferTime;
+	bool bCanDoubleJump = false;
 
 	void Aim(float Value);
 	void Turn(float Value);

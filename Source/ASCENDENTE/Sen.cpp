@@ -51,9 +51,10 @@ void ASen::Tick(float DeltaTime)
         CoyoteTime = CoyoteSeconds;
     }
 
-    if (BufferTime >= 0 && CoyoteTime > 0)
+    if (BufferTime >= 0 && CoyoteTime > 0 && !bCanDoubleJump)
     {
         Jump();
+        bCanDoubleJump = true;
     }
 }
 
@@ -92,6 +93,17 @@ void ASen::Strafe(float Value)
 void ASen::StartJump()
 {
     BufferTime = BufferSeconds;
+
+    if (bCanDoubleJump && GetCharacterMovement()->IsFalling())
+    {
+        Jump();
+        bCanDoubleJump = false;
+    }
+
+    if (!GetCharacterMovement()->IsFalling())
+    {
+        bCanDoubleJump = false;
+    }
 }
 
 void ASen::StopJump()
