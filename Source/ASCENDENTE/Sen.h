@@ -40,10 +40,20 @@ private:
 	float CoyoteSeconds = 0.3f;
 	UPROPERTY(EditAnywhere, Category = "Jump")
 	float BufferSeconds = 0.1f;
+	UPROPERTY(EditAnywhere, Category = "Dash")
+	float DashForceGround = 3000;
+	UPROPERTY(EditAnywhere, Category = "Dash")
+	float DashForceAir = 1300;
+	UPROPERTY(EditAnywhere, Category = "Dash")
+	float DashCooldownSeconds = 2;
 
 	float CoyoteTime;
 	float BufferTime;
 	bool bCanDoubleJump = false;
+	bool bCanDash = true;
+	float DashForce;
+	float MoveForwardAxisValue = 0;
+	float StrafeAxisValue = 0;
 
 	void Aim(float Value);
 	void Turn(float Value);
@@ -51,6 +61,8 @@ private:
 	void Strafe(float Value);
 	void StartJump();
 	void StopJump();
+	void Dash();
+	void DashCooldown();
 
 	APlayerController *SenPlayerController;
 };

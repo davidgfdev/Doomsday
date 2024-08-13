@@ -6,6 +6,7 @@
 #include "GameFramework/SpringArmComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
+#include "TimerManager.h"
 
 ASen::ASen()
 {
@@ -27,6 +28,7 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAxis(TEXT("Strafe"), this, &ASen::Strafe);
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ASen::StartJump);
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ASen::StopJump);
+    PlayerInputComponent->BindAction(TEXT("Dash"), IE_Pressed, this, &ASen::Dash);
 }
 
 void ASen::BeginPlay()
@@ -45,10 +47,12 @@ void ASen::Tick(float DeltaTime)
     if (GetMovementComponent()->IsFalling())
     {
         CoyoteTime -= DeltaTime;
+        DashForce = DashForceAir;
     }
     else
     {
         CoyoteTime = CoyoteSeconds;
+        DashForce = DashForceGround;
     }
 
     if (BufferTime >= 0 && CoyoteTime > 0 && !bCanDoubleJump)
@@ -80,12 +84,14 @@ void ASen::Turn(float Value)
 
 void ASen::MoveForward(float Value)
 {
+    MoveForwardAxisValue = Value;
     FVector ForwardDirection = UKismetMathLibrary::GetForwardVector(GetActorRotation());
     AddMovementInput(ForwardDirection, Value);
 }
 
 void ASen::Strafe(float Value)
 {
+    StrafeAxisValue = Value;
     FVector RightDirection = UKismetMathLibrary::GetRightVector(GetActorRotation());
     AddMovementInput(RightDirection, Value);
 }
@@ -109,4 +115,26 @@ void ASen::StartJump()
 void ASen::StopJump()
 {
     StopJumping();
+}
+
+void ASen::Dash()
+{
+    if (bCanDash)
+    {
+        FVector ForwardDirection = UKismetMathLibrary::GetForwardVector(GetActorRotation()) * MoveForwardAxisValue;
+        FVector RightDirection = UKismetMathLibrary::GetRightVector(GetActorRotation()) * StrafeAxisValue;
+
+        FVector DashVector = ForwardDirection + RightDirection;
+        LaunchCharacter(DashVector * DashForce, false, false);
+
+        bCanDash = false;
+
+        FTimerHandle DashCooldownTimerHandler;
+        GetWorldTimerManager().SetTimer(DashCooldownTimerHandler, this, &ASen::DashCooldown, DashCooldownSeconds, false);
+    }
+}
+
+void ASen::DashCooldown()
+{
+    bCanDash = true;
 }
