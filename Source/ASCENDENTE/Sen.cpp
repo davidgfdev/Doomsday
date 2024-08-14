@@ -7,6 +7,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "TimerManager.h"
+#include "WeaponBase.h"
 
 ASen::ASen()
 {
@@ -15,6 +16,9 @@ ASen::ASen()
 
     CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
     CameraComponent->SetupAttachment(SpringArmComponent);
+
+    Weapon = CreateDefaultSubobject<UChildActorComponent>(TEXT("Weapon"));
+    Weapon->SetupAttachment(CameraComponent);
 }
 
 // Called to bind functionality to input
@@ -29,6 +33,9 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ASen::StartJump);
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ASen::StopJump);
     PlayerInputComponent->BindAction(TEXT("Dash"), IE_Pressed, this, &ASen::Dash);
+    PlayerInputComponent->BindAction(TEXT("PrimaryFire"), IE_Pressed, this, &ASen::PrimaryFire);
+    PlayerInputComponent->BindAction(TEXT("SecondaryFire"), IE_Pressed, this, &ASen::SecondaryFire);
+    PlayerInputComponent->BindAction(TEXT("ChangeWeapon"), IE_Pressed, this, &ASen::ChangeWeapon);
 }
 
 void ASen::BeginPlay()
@@ -36,6 +43,11 @@ void ASen::BeginPlay()
     Super::BeginPlay();
 
     SenPlayerController = Cast<APlayerController>(GetController());
+
+    if (Weapons.Num() > 0)
+    {
+        Weapon->SetChildActorClass(Weapons[0]);
+    }
 }
 
 void ASen::Tick(float DeltaTime)
@@ -137,4 +149,53 @@ void ASen::Dash()
 void ASen::DashCooldown()
 {
     bCanDash = true;
+}
+
+void ASen::PrimaryFire()
+{
+    if (Weapon)
+    {
+        Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary();
+    }
+}
+
+void ASen::SecondaryFire()
+{
+    if (GetCharacterMovement()->IsFalling())
+    {
+        MidAirFire();
+    }
+    else
+    {
+        if (Weapon)
+        {
+            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+        }
+    }
+}
+
+void ASen::MidAirFire()
+{
+    if (Weapon)
+    {
+        Cast<AWeaponBase>(Weapon->GetChildActor())->ShootMidAir();
+    }
+}
+
+void ASen::ChangeWeapon()
+{
+    if (Weapon)
+    {
+        if (Weapons.Num() > 0)
+        {
+            if (Weapon->GetChildActorClass() == Weapons[0])
+            {
+                Weapon->SetChildActorClass(Weapons[1]);
+            }
+            else
+            {
+                Weapon->SetChildActorClass(Weapons[0]);
+            }
+        }
+    }
 }

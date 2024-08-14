@@ -32,6 +32,9 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent *SpringArmComponent;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UChildActorComponent *Weapon;
+
 	UPROPERTY(EditAnywhere, Category = "Aim")
 	float SensibilityX = 180;
 	UPROPERTY(EditAnywhere, Category = "Aim")
@@ -46,6 +49,9 @@ private:
 	float DashForceAir = 1300;
 	UPROPERTY(EditAnywhere, Category = "Dash")
 	float DashCooldownSeconds = 2;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TArray<TSubclassOf<class AWeaponBase>> Weapons;
 
 	float CoyoteTime;
 	float BufferTime;
@@ -63,6 +69,10 @@ private:
 	void StopJump();
 	void Dash();
 	void DashCooldown();
+	void PrimaryFire();
+	void SecondaryFire();
+	void MidAirFire();
+	void ChangeWeapon();
 
 	APlayerController *SenPlayerController;
 };
