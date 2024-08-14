@@ -7,7 +7,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "TimerManager.h"
-#include "WeaponBase.h"
+#include "..\Source\ASCENDENTE\Weapons\WeaponBase.h"
 
 ASen::ASen()
 {

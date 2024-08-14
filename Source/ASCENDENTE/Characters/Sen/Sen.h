@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BasicCharacter.h"
+#include "..\Source\ASCENDENTE\Characters\BasicCharacter.h"
 #include "Sen.generated.h"
 
 /**
