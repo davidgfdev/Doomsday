@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "BasicCharacter.h"
+#include "..\Source\ASCENDENTE\Characters\BasicCharacter.h"
 #include "Sen.generated.h"
 
 /**
@@ -32,6 +32,9 @@ private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent *SpringArmComponent;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UChildActorComponent *Weapon;
+
 	UPROPERTY(EditAnywhere, Category = "Aim")
 	float SensibilityX = 180;
 	UPROPERTY(EditAnywhere, Category = "Aim")
@@ -47,6 +50,9 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Dash")
 	float DashCooldownSeconds = 2;
 
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	TArray<TSubclassOf<class AWeaponBase>> Weapons;
+
 	float CoyoteTime;
 	float BufferTime;
 	bool bCanDoubleJump = false;
@@ -54,15 +60,23 @@ private:
 	float DashForce;
 	float MoveForwardAxisValue = 0;
 	float StrafeAxisValue = 0;
+	float OriginalMaxSpeed = 1000;
 
 	void Aim(float Value);
 	void Turn(float Value);
 	void MoveForward(float Value);
 	void Strafe(float Value);
+	void PrimaryFire(float Value);
+	void SecondaryFire(float Value);
 	void StartJump();
 	void StopJump();
 	void Dash();
 	void DashCooldown();
+	void MidAirFire();
+	void ChangeWeapon();
 
 	APlayerController *SenPlayerController;
+
+public:
+	void SwitchMovementMode(bool bIsMoving);
 };

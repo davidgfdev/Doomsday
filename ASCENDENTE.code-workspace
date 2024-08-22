@@ -11,7 +11,11 @@
 	],
 	"settings": {
 		"typescript.tsc.autoDetect": "off",
-		"npm.autoDetect": "off"
+		"npm.autoDetect": "off",
+		"files.associations": {
+			"*.json": "json",
+			"*.rh": "cpp"
+		}
 	},
 	"extensions": {
 		"recommendations": [
@@ -30,7 +34,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Debug",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -47,7 +51,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Debug",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -67,7 +71,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Debug",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -84,7 +88,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"DebugGame",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -101,7 +105,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"DebugGame",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -121,7 +125,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"DebugGame",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -138,7 +142,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Development",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -155,7 +159,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Development",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -175,7 +179,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Development",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -192,7 +196,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Test",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -209,7 +213,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Test",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -229,7 +233,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Test",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -246,7 +250,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Shipping",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -263,7 +267,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Shipping",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -283,7 +287,7 @@
 					"ASCENDENTE",
 					"Win64",
 					"Shipping",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -300,7 +304,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"Debug",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -317,7 +321,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"Debug",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -337,7 +341,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"Debug",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -354,7 +358,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"DebugGame",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -371,7 +375,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"DebugGame",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -391,7 +395,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"DebugGame",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -408,7 +412,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"Development",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -425,7 +429,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"Development",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -445,7 +449,7 @@
 					"ASCENDENTEEditor",
 					"Win64",
 					"Development",
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject",
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject",
 					"-waitmutex"
 				],
 				"problemMatcher": "$msCompile",
@@ -462,10 +466,9 @@
 			{
 				"name": "Launch ASCENDENTE (Debug)",
 				"request": "launch",
-				"program": "D:\\Proyectos\\UE5\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
+				"program": "E:\\Proyectos\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-Debug.exe",
 				"preLaunchTask": "ASCENDENTE Win64 Debug Build",
-				"args": [
-				],
+				"args": [],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,
 				"console": "integratedTerminal",
@@ -478,10 +481,9 @@
 			{
 				"name": "Launch ASCENDENTE (DebugGame)",
 				"request": "launch",
-				"program": "D:\\Proyectos\\UE5\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
+				"program": "E:\\Proyectos\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-DebugGame.exe",
 				"preLaunchTask": "ASCENDENTE Win64 DebugGame Build",
-				"args": [
-				],
+				"args": [],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,
 				"console": "integratedTerminal",
@@ -494,10 +496,9 @@
 			{
 				"name": "Launch ASCENDENTE (Development)",
 				"request": "launch",
-				"program": "D:\\Proyectos\\UE5\\ASCENDENTE\\Binaries\\Win64\\UnrealGame.exe",
+				"program": "E:\\Proyectos\\ASCENDENTE\\Binaries\\Win64\\UnrealGame.exe",
 				"preLaunchTask": "ASCENDENTE Win64 Development Build",
-				"args": [
-				],
+				"args": [],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,
 				"console": "integratedTerminal",
@@ -510,10 +511,9 @@
 			{
 				"name": "Launch ASCENDENTE (Test)",
 				"request": "launch",
-				"program": "D:\\Proyectos\\UE5\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
+				"program": "E:\\Proyectos\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-Test.exe",
 				"preLaunchTask": "ASCENDENTE Win64 Test Build",
-				"args": [
-				],
+				"args": [],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,
 				"console": "integratedTerminal",
@@ -526,10 +526,9 @@
 			{
 				"name": "Launch ASCENDENTE (Shipping)",
 				"request": "launch",
-				"program": "D:\\Proyectos\\UE5\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
+				"program": "E:\\Proyectos\\ASCENDENTE\\Binaries\\Win64\\UnrealGame-Win64-Shipping.exe",
 				"preLaunchTask": "ASCENDENTE Win64 Shipping Build",
-				"args": [
-				],
+				"args": [],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,
 				"console": "integratedTerminal",
@@ -545,7 +544,7 @@
 				"program": "E:\\Program Files\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-Debug.exe",
 				"preLaunchTask": "ASCENDENTEEditor Win64 Debug Build",
 				"args": [
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject"
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject"
 				],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,
@@ -562,7 +561,7 @@
 				"program": "E:\\Program Files\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor-Win64-DebugGame.exe",
 				"preLaunchTask": "ASCENDENTEEditor Win64 DebugGame Build",
 				"args": [
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject"
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject"
 				],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,
@@ -579,7 +578,7 @@
 				"program": "E:\\Program Files\\UE_5.4\\Engine\\Binaries\\Win64\\UnrealEditor.exe",
 				"preLaunchTask": "ASCENDENTEEditor Win64 Development Build",
 				"args": [
-					"D:\\Proyectos\\UE5\\ASCENDENTE\\ASCENDENTE.uproject"
+					"E:\\Proyectos\\ASCENDENTE\\ASCENDENTE.uproject"
 				],
 				"cwd": "E:\\Program Files\\UE_5.4",
 				"stopAtEntry": false,

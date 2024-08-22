@@ -1,41 +1,41 @@
 [
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.Build.cs",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.Build.cs",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.cpp",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.h",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.cpp",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.h",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	}
