@@ -23,10 +23,19 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-private:
-	UPROPERTY(EditDefaultsOnly, Category = "Mesh")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UStaticMeshComponent *ProjectileMesh;
 
+private:
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	class UProjectileMovementComponent *ProjectileMovement;
+
+	UPROPERTY(EditAnywhere)
+	float Damage = 50.f;
+
+	UPROPERTY(EditAnywhere)
+	bool bItDestroysOnTouch = true;
+
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent *HitComp, AActor *OtherActor, UPrimitiveComponent *OtherComp, FVector NormalImpulse, const FHitResult &Hit);
 };

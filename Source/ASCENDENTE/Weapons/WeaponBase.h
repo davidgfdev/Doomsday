@@ -27,10 +27,10 @@ public:
 	virtual void ShootSecondary();
 	virtual void ShootMidAir();
 
-private:
+protected:
 	UPROPERTY(EditAnywhere, Category = "Damage")
 	float FireDamage;
-	UPROPERTY(EditAnywhere, Category = "Damage")
+	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float FireRate;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))

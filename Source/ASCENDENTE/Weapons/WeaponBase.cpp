@@ -9,7 +9,7 @@ AWeaponBase::AWeaponBase()
 	PrimaryActorTick.bCanEverTick = true;
 
 	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon Mesh"));
-	WeaponMesh->SetupAttachment(RootComponent);
+	RootComponent = WeaponMesh;
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile SpawnPoint"));
 	ProjectileSpawnPoint->SetupAttachment(WeaponMesh);

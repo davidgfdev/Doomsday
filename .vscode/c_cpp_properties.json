@@ -6,7 +6,7 @@
             "cStandard": "c17",
             "cppStandard": "c++20",
             "intelliSenseMode": "msvc-x64",
-            "compileCommands": "D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_ASCENDENTE.json"
+            "compileCommands": "E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_ASCENDENTE.json"
         },
         {
             "name": "Win32",
@@ -14,7 +14,7 @@
             "cStandard": "c17",
             "cppStandard": "c++20",
             "intelliSenseMode": "msvc-x64",
-            "compileCommands": "D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default.json"
+            "compileCommands": "E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default.json"
         }
     ],
     "version": 4

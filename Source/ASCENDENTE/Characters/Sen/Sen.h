@@ -60,19 +60,23 @@ private:
 	float DashForce;
 	float MoveForwardAxisValue = 0;
 	float StrafeAxisValue = 0;
+	float OriginalMaxSpeed = 1000;
 
 	void Aim(float Value);
 	void Turn(float Value);
 	void MoveForward(float Value);
 	void Strafe(float Value);
+	void PrimaryFire(float Value);
+	void SecondaryFire(float Value);
 	void StartJump();
 	void StopJump();
 	void Dash();
 	void DashCooldown();
-	void PrimaryFire();
-	void SecondaryFire();
 	void MidAirFire();
 	void ChangeWeapon();
 
 	APlayerController *SenPlayerController;
+
+public:
+	void SwitchMovementMode(bool bIsMoving);
 };

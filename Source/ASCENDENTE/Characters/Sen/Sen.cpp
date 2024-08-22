@@ -8,6 +8,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "TimerManager.h"
 #include "..\Source\ASCENDENTE\Weapons\WeaponBase.h"
+#include "..\Source\ASCENDENTE\Weapons\Nihilist.h"
 
 ASen::ASen()
 {
@@ -33,8 +34,8 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Pressed, this, &ASen::StartJump);
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ASen::StopJump);
     PlayerInputComponent->BindAction(TEXT("Dash"), IE_Pressed, this, &ASen::Dash);
-    PlayerInputComponent->BindAction(TEXT("PrimaryFire"), IE_Pressed, this, &ASen::PrimaryFire);
-    PlayerInputComponent->BindAction(TEXT("SecondaryFire"), IE_Pressed, this, &ASen::SecondaryFire);
+    PlayerInputComponent->BindAxis(TEXT("PrimaryFire"), this, &ASen::PrimaryFire);
+    PlayerInputComponent->BindAxis(TEXT("SecondaryFire"), this, &ASen::SecondaryFire);
     PlayerInputComponent->BindAction(TEXT("ChangeWeapon"), IE_Pressed, this, &ASen::ChangeWeapon);
 }
 
@@ -48,6 +49,8 @@ void ASen::BeginPlay()
     {
         Weapon->SetChildActorClass(Weapons[0]);
     }
+
+    OriginalMaxSpeed = GetCharacterMovement()->GetMaxSpeed();
 }
 
 void ASen::Tick(float DeltaTime)
@@ -151,26 +154,36 @@ void ASen::DashCooldown()
     bCanDash = true;
 }
 
-void ASen::PrimaryFire()
+void ASen::PrimaryFire(float Value)
 {
-    if (Weapon)
-    {
-        Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary();
-    }
-}
-
-void ASen::SecondaryFire()
-{
-    if (GetCharacterMovement()->IsFalling())
-    {
-        MidAirFire();
-    }
-    else
+    if (Value == 1)
     {
         if (Weapon)
         {
-            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary();
         }
+    }
+}
+
+void ASen::SecondaryFire(float Value)
+{
+    if (Value == 1)
+    {
+        if (GetCharacterMovement()->IsFalling())
+        {
+            MidAirFire();
+        }
+        else
+        {
+            if (Weapon)
+            {
+                Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+            }
+        }
+    }
+    else if (Value == 0 && Weapon->GetChildActor()->IsA(ANihilist::StaticClass())) // SOLO PARA NIHILIST
+    {
+        Cast<ANihilist>(Weapon->GetChildActor())->RecoverMovement();
     }
 }
 
@@ -197,5 +210,17 @@ void ASen::ChangeWeapon()
                 Weapon->SetChildActorClass(Weapons[0]);
             }
         }
+    }
+}
+
+void ASen::SwitchMovementMode(bool bIsMoving)
+{
+    if (bIsMoving)
+    {
+        GetCharacterMovement()->MaxWalkSpeed = OriginalMaxSpeed;
+    }
+    else
+    {
+        GetCharacterMovement()->MaxWalkSpeed = 0.0f;
     }
 }
