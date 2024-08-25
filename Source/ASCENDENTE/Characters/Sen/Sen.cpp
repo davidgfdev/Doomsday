@@ -9,6 +9,7 @@
 #include "TimerManager.h"
 #include "..\Source\ASCENDENTE\Weapons\WeaponBase.h"
 #include "..\Source\ASCENDENTE\Weapons\Nihilist.h"
+#include "..\Source\ASCENDENTE\Weapons\HopeAndPrison.h"
 
 ASen::ASen()
 {
@@ -35,6 +36,7 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAction(TEXT("Jump"), IE_Released, this, &ASen::StopJump);
     PlayerInputComponent->BindAction(TEXT("Dash"), IE_Pressed, this, &ASen::Dash);
     PlayerInputComponent->BindAxis(TEXT("PrimaryFire"), this, &ASen::PrimaryFire);
+    PlayerInputComponent->BindAction(TEXT("HPPrimaryFire"), IE_Pressed, this, &ASen::HPPrimaryFire);
     PlayerInputComponent->BindAxis(TEXT("SecondaryFire"), this, &ASen::SecondaryFire);
     PlayerInputComponent->BindAction(TEXT("ChangeWeapon"), IE_Pressed, this, &ASen::ChangeWeapon);
 }
@@ -160,6 +162,20 @@ void ASen::PrimaryFire(float Value)
     {
         if (Weapon)
         {
+            if (!Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
+            {
+                Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary();
+            }
+        }
+    }
+}
+
+void ASen::HPPrimaryFire()
+{
+    if (Weapon)
+    {
+        if (Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
+        {
             Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary();
         }
     }
@@ -177,7 +193,10 @@ void ASen::SecondaryFire(float Value)
         {
             if (Weapon)
             {
-                Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+                if (!Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
+                {
+                    Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+                }
             }
         }
     }

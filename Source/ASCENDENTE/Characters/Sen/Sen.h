@@ -25,6 +25,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	class UCameraComponent *GetCameraComponent() const { return CameraComponent; }
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent *CameraComponent;
@@ -74,6 +76,7 @@ private:
 	void DashCooldown();
 	void MidAirFire();
 	void ChangeWeapon();
+	void HPPrimaryFire();
 
 	APlayerController *SenPlayerController;
 
