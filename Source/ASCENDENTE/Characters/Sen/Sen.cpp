@@ -37,6 +37,7 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAction(TEXT("Dash"), IE_Pressed, this, &ASen::Dash);
     PlayerInputComponent->BindAxis(TEXT("PrimaryFire"), this, &ASen::PrimaryFire);
     PlayerInputComponent->BindAction(TEXT("HPPrimaryFire"), IE_Pressed, this, &ASen::HPPrimaryFire);
+    PlayerInputComponent->BindAction(TEXT("HPSecondaryFire"), IE_Pressed, this, &ASen::HPSecondaryFire);
     PlayerInputComponent->BindAxis(TEXT("SecondaryFire"), this, &ASen::SecondaryFire);
     PlayerInputComponent->BindAction(TEXT("ChangeWeapon"), IE_Pressed, this, &ASen::ChangeWeapon);
 }
@@ -187,7 +188,10 @@ void ASen::SecondaryFire(float Value)
     {
         if (GetCharacterMovement()->IsFalling())
         {
-            MidAirFire();
+            if (!Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
+            {
+                MidAirFire();
+            }
         }
         else
         {
@@ -203,6 +207,21 @@ void ASen::SecondaryFire(float Value)
     else if (Value == 0 && Weapon->GetChildActor()->IsA(ANihilist::StaticClass())) // SOLO PARA NIHILIST
     {
         Cast<ANihilist>(Weapon->GetChildActor())->RecoverMovement();
+    }
+}
+
+void ASen::HPSecondaryFire()
+{
+    if (Weapon)
+    {
+        if (Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
+        {
+            if (GetCharacterMovement()->IsFalling())
+            {
+                MidAirFire();
+            }
+            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+        }
     }
 }
 
@@ -228,6 +247,7 @@ void ASen::ChangeWeapon()
             {
                 Weapon->SetChildActorClass(Weapons[0]);
             }
+            Weapon->GetChildActor()->SetOwner(this);
         }
     }
 }

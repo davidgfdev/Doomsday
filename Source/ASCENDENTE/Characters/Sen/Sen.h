@@ -77,6 +77,7 @@ private:
 	void MidAirFire();
 	void ChangeWeapon();
 	void HPPrimaryFire();
+	void HPSecondaryFire();
 
 	APlayerController *SenPlayerController;
 

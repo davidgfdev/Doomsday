@@ -22,12 +22,22 @@ public:
 private:
 	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float SecondaryFireRate = 0.05f;
+	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
+	float ExpansiveCooldown = 3;
+	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
+	float ExpansiveRadius = 3;
+	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
+	float ExpansiveImpulse = 300;
+	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
+	float ExpansiveRepelForce = 500;
 
 	float CurrentFireRate;
 	bool bReadyToFire = true;
+	bool bExpansiveReady = true;
 
 	UPROPERTY(EditAnywhere, Category = "Collision")
 	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
 
 	void SetNextFire();
+	void SetNextExpansive();
 };

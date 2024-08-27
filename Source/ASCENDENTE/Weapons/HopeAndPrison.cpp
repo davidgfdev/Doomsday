@@ -48,9 +48,51 @@ void AHopeAndPrison::ShootSecondary()
 void AHopeAndPrison::ShootMidAir()
 {
     UE_LOG(LogTemp, Display, TEXT("Hope & Prison: ShootMidAir"));
+    if (bExpansiveReady)
+    {
+        bExpansiveReady = false;
+
+        TArray<AActor *> EnemiesInRange;
+        TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
+        ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldDynamic));
+        ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_PhysicsBody));
+        ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
+        TArray<AActor *> ActorsToIgnore;
+        ActorsToIgnore.Add(GetOwner());
+
+        Cast<ACharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0))->LaunchCharacter(-UKismetMathLibrary::GetForwardVector(GetActorRotation()) * ExpansiveImpulse, false, true);
+
+        UKismetSystemLibrary::SphereOverlapActors(GetWorld(),
+                                                  ProjectileSpawnPoint->GetComponentLocation(),
+                                                  ExpansiveRadius,
+                                                  ObjectTypes,
+                                                  ACharacter::StaticClass(),
+                                                  ActorsToIgnore,
+                                                  EnemiesInRange);
+
+        DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), ExpansiveRadius, 12, FColor::Red, false, 2.f);
+
+        for (int i = 0; i < EnemiesInRange.Num(); i++)
+        {
+            ACharacter *Enemy = Cast<ACharacter>(EnemiesInRange[i]);
+            FVector ProjectedPlayerLocation = GetActorLocation();
+            ProjectedPlayerLocation.Z = Enemy->GetActorLocation().Z;
+            FVector DirectionFromPlayer = ProjectedPlayerLocation - Enemy->GetActorLocation();
+            Enemy->LaunchCharacter(DirectionFromPlayer * ExpansiveRepelForce, false, false);
+            UE_LOG(LogTemp, Display, TEXT("Enemy detected"));
+        }
+
+        FTimerHandle HandleExpansiveCooldown;
+        GetWorldTimerManager().SetTimer(HandleExpansiveCooldown, this, &AHopeAndPrison::SetNextExpansive, ExpansiveCooldown, false);
+    }
 }
 
 void AHopeAndPrison::SetNextFire()
 {
     bReadyToFire = true;
+}
+
+void AHopeAndPrison::SetNextExpansive()
+{
+    bExpansiveReady = true;
 }
