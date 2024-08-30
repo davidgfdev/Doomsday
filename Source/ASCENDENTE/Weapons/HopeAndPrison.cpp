@@ -7,10 +7,10 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Camera/CameraComponent.h"
 
-void AHopeAndPrison::ShootPrimary()
+void AHopeAndPrison::ShootPrimary(float &Ammo)
 {
     CurrentFireRate = FireRate;
-    if (bReadyToFire)
+    if (bReadyToFire && Ammo >= PrimaryAmmoCost)
     {
         FHitResult Hit;
         ASen *Sen = Cast<ASen>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
@@ -38,17 +38,18 @@ void AHopeAndPrison::ShootPrimary()
         GetWorldTimerManager().SetTimer(Handle, this, &AHopeAndPrison::SetNextFire, CurrentFireRate, false);
 
         UE_LOG(LogTemp, Display, TEXT("Hope & Prison: Primary"));
+        Ammo -= PrimaryAmmoCost;
     }
 }
-void AHopeAndPrison::ShootSecondary()
+void AHopeAndPrison::ShootSecondary(float &Ammo)
 {
     CurrentFireRate = SecondaryFireRate;
     UE_LOG(LogTemp, Display, TEXT("Hope & Prison: Secondary"));
 }
-void AHopeAndPrison::ShootMidAir()
+void AHopeAndPrison::ShootMidAir(float &Ammo)
 {
     UE_LOG(LogTemp, Display, TEXT("Hope & Prison: ShootMidAir"));
-    if (bExpansiveReady)
+    if (bExpansiveReady && Ammo >= MidAirAmmoCost)
     {
         bExpansiveReady = false;
 
@@ -84,6 +85,8 @@ void AHopeAndPrison::ShootMidAir()
 
         FTimerHandle HandleExpansiveCooldown;
         GetWorldTimerManager().SetTimer(HandleExpansiveCooldown, this, &AHopeAndPrison::SetNextExpansive, ExpansiveCooldown, false);
+
+        Ammo -= MidAirAmmoCost;
     }
 }
 

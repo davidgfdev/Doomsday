@@ -15,9 +15,9 @@ class ASCENDENTE_API ANihilist : public AWeaponBase
 	GENERATED_BODY()
 
 public:
-	virtual void ShootPrimary() override;
-	virtual void ShootSecondary() override;
-	virtual void ShootMidAir() override;
+	virtual void ShootPrimary(float &Ammo) override;
+	virtual void ShootSecondary(float &Ammo) override;
+	virtual void ShootMidAir(float &Ammo) override;
 
 	void RecoverMovement();
 

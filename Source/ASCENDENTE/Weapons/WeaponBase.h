@@ -23,15 +23,22 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void ShootPrimary();
-	virtual void ShootSecondary();
-	virtual void ShootMidAir();
+	virtual void ShootPrimary(float &Ammo);
+	virtual void ShootSecondary(float &Ammo);
+	virtual void ShootMidAir(float &Ammo);
 
 protected:
 	UPROPERTY(EditAnywhere, Category = "Damage")
 	float FireDamage;
 	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float FireRate;
+
+	UPROPERTY(EditAnywhere, Category = "Ammo")
+	float PrimaryAmmoCost;
+	UPROPERTY(EditAnywhere, Category = "Ammo")
+	float SecondaryAmmoCost;
+	UPROPERTY(EditAnywhere, Category = "Ammo")
+	float MidAirAmmoCost;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UStaticMeshComponent *WeaponMesh;

@@ -54,6 +54,9 @@ void ASen::BeginPlay()
     }
 
     OriginalMaxSpeed = GetCharacterMovement()->GetMaxSpeed();
+
+    CurrentAmmo = MaxAmmo;
+    UpdateAmmo(CurrentAmmo);
 }
 
 void ASen::Tick(float DeltaTime)
@@ -165,7 +168,8 @@ void ASen::PrimaryFire(float Value)
         {
             if (!Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
             {
-                Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary();
+                Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary(CurrentAmmo);
+                UpdateAmmo(CurrentAmmo);
             }
         }
     }
@@ -177,7 +181,8 @@ void ASen::HPPrimaryFire()
     {
         if (Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
         {
-            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary();
+            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary(CurrentAmmo);
+            UpdateAmmo(CurrentAmmo);
         }
     }
 }
@@ -199,7 +204,8 @@ void ASen::SecondaryFire(float Value)
             {
                 if (!Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
                 {
-                    Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+                    Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary(CurrentAmmo);
+                    UpdateAmmo(CurrentAmmo);
                 }
             }
         }
@@ -220,7 +226,8 @@ void ASen::HPSecondaryFire()
             {
                 MidAirFire();
             }
-            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary();
+            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary(CurrentAmmo);
+            UpdateAmmo(CurrentAmmo);
         }
     }
 }
@@ -229,7 +236,8 @@ void ASen::MidAirFire()
 {
     if (Weapon)
     {
-        Cast<AWeaponBase>(Weapon->GetChildActor())->ShootMidAir();
+        Cast<AWeaponBase>(Weapon->GetChildActor())->ShootMidAir(CurrentAmmo);
+        UpdateAmmo(CurrentAmmo);
     }
 }
 

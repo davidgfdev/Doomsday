@@ -13,5 +13,11 @@ UCLASS()
 class ASCENDENTE_API AASCENDENTEGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
+
+protected:
+	virtual void BeginPlay();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
 	
 };

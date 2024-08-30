@@ -10,10 +10,10 @@ void ANihilist::BeginPlay()
     Super::BeginPlay();
 }
 
-void ANihilist::ShootPrimary()
+void ANihilist::ShootPrimary(float &Ammo)
 {
     CurrentFireRate = FireRate;
-    if (bReadyToFire)
+    if (bReadyToFire && Ammo >= PrimaryAmmoCost)
     {
         FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
         FRotator SpawnRotator = ProjectileSpawnPoint->GetComponentRotation();
@@ -22,16 +22,17 @@ void ANihilist::ShootPrimary()
         bReadyToFire = false;
         FTimerHandle Handle;
         GetWorldTimerManager().SetTimer(Handle, this, &ANihilist::SetNextFire, CurrentFireRate, false);
+        Ammo -= PrimaryAmmoCost;
     }
 }
 
-void ANihilist::ShootSecondary()
+void ANihilist::ShootSecondary(float &Ammo)
 {
     CurrentFireRate = SecondaryFireRate;
     ASen *Player = Cast<ASen>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
     Player->SwitchMovementMode(false);
     WeaponMesh->SetRelativeLocation(PositionWhilePlanted);
-    if (bReadyToFire)
+    if (bReadyToFire && Ammo >= SecondaryAmmoCost)
     {
         bReadyToFire = false;
 
@@ -42,12 +43,13 @@ void ANihilist::ShootSecondary()
 
         FTimerHandle HandleNextFire;
         GetWorldTimerManager().SetTimer(HandleNextFire, this, &ANihilist::SetNextFire, CurrentFireRate, false);
+        Ammo -= SecondaryAmmoCost;
     }
 }
 
-void ANihilist::ShootMidAir()
+void ANihilist::ShootMidAir(float &Ammo)
 {
-    if (bOrbReady)
+    if (bOrbReady && Ammo >= MidAirAmmoCost)
     {
         bOrbReady = false;
 
@@ -58,6 +60,7 @@ void ANihilist::ShootMidAir()
 
         FTimerHandle HandleOrbCooldown;
         GetWorldTimerManager().SetTimer(HandleOrbCooldown, this, &ANihilist::SetNextOrb, OrbCooldown, false);
+        Ammo -= MidAirAmmoCost;
     }
 }
 

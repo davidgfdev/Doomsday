@@ -27,6 +27,10 @@ public:
 
 	class UCameraComponent *GetCameraComponent() const { return CameraComponent; }
 
+protected:
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateAmmo(float Ammo);
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent *CameraComponent;
@@ -51,6 +55,8 @@ private:
 	float DashForceAir = 1300;
 	UPROPERTY(EditAnywhere, Category = "Dash")
 	float DashCooldownSeconds = 2;
+	UPROPERTY(EditAnywhere, Category = "Ammo")
+	float MaxAmmo = 100;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TArray<TSubclassOf<class AWeaponBase>> Weapons;
@@ -63,6 +69,7 @@ private:
 	float MoveForwardAxisValue = 0;
 	float StrafeAxisValue = 0;
 	float OriginalMaxSpeed = 1000;
+	float CurrentAmmo = 100;
 
 	void Aim(float Value);
 	void Turn(float Value);
