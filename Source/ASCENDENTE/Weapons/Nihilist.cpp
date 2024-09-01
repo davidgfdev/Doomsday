@@ -19,6 +19,7 @@ void ANihilist::ShootPrimary(float &Ammo)
         FRotator SpawnRotator = ProjectileSpawnPoint->GetComponentRotation();
         auto Projectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, SpawnLocation, SpawnRotator);
         Projectile->SetOwner(this);
+        Projectile->Damage = FireDamage;
         bReadyToFire = false;
         FTimerHandle Handle;
         GetWorldTimerManager().SetTimer(Handle, this, &ANihilist::SetNextFire, CurrentFireRate, false);
@@ -40,6 +41,7 @@ void ANihilist::ShootSecondary(float &Ammo)
         FRotator SpawnRotator = ProjectileSpawnPoint->GetComponentRotation();
         auto Projectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, SpawnLocation, SpawnRotator);
         Projectile->SetOwner(this);
+        Projectile->Damage = FireDamage;
 
         FTimerHandle HandleNextFire;
         GetWorldTimerManager().SetTimer(HandleNextFire, this, &ANihilist::SetNextFire, CurrentFireRate, false);
@@ -57,6 +59,7 @@ void ANihilist::ShootMidAir(float &Ammo)
         FRotator SpawnRotator = ProjectileSpawnPoint->GetComponentRotation();
         auto Projectile = GetWorld()->SpawnActor<AProjectileBase>(OrbClass, SpawnLocation, SpawnRotator);
         Projectile->SetOwner(this);
+        Projectile->Damage = FireDamage;
 
         FTimerHandle HandleOrbCooldown;
         GetWorldTimerManager().SetTimer(HandleOrbCooldown, this, &ANihilist::SetNextOrb, OrbCooldown, false);

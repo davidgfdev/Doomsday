@@ -8,3 +8,8 @@ void AASCENDENTEGameModeBase::BeginPlay()
 
     StartGame();
 }
+
+void AASCENDENTEGameModeBase::ActorDied(AActor *DeadActor)
+{
+    DeadActor->Destroy();
+}

@@ -26,12 +26,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UStaticMeshComponent *ProjectileMesh;
 
+	UPROPERTY(EditAnywhere)
+	float Damage = 50.f;
+
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Movement")
 	class UProjectileMovementComponent *ProjectileMovement;
-
-	UPROPERTY(EditAnywhere)
-	float Damage = 50.f;
 
 	UPROPERTY(EditAnywhere)
 	bool bItDestroysOnTouch = true;

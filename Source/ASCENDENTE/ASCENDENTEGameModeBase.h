@@ -14,6 +14,9 @@ class ASCENDENTE_API AASCENDENTEGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
 
+public:
+	void ActorDied(AActor *DeadActor);
+	
 protected:
 	virtual void BeginPlay();
 
