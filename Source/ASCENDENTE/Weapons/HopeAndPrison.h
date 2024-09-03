@@ -15,11 +15,16 @@ class ASCENDENTE_API AHopeAndPrison : public AWeaponBase
 	GENERATED_BODY()
 
 public:
+	AHopeAndPrison();
+
 	virtual void ShootPrimary(float &Ammo) override;
 	virtual void ShootSecondary(float &Ammo) override;
 	virtual void ShootMidAir(float &Ammo) override;
 
 private:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	USceneComponent *ShotgunSpawnPoint;
+
 	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float SecondaryFireRate = 0.05f;
 	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
@@ -30,6 +35,10 @@ private:
 	float ExpansiveImpulse = 300;
 	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
 	float ExpansiveRepelForce = 500;
+	UPROPERTY(EditAnywhere, Category = "Shotgun")
+	float ShotgunRadius = 1.05f;
+	UPROPERTY(EditAnywhere, Category = "Shotgun")
+	float ShotgunDamage = 10;
 
 	float CurrentFireRate;
 	bool bReadyToFire = true;

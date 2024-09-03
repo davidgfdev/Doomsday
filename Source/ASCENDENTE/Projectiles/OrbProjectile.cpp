@@ -3,6 +3,7 @@
 #include "OrbProjectile.h"
 #include "TimerManager.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "Kismet/GameplayStatics.h"
 
 void AOrbProjectile::BeginPlay()
 {
@@ -18,6 +19,10 @@ void AOrbProjectile::Explode()
 {
     FVector ProjectileCurrentScale = ProjectileMesh->GetComponentScale();
     DrawDebugSphere(GetWorld(), GetActorLocation(), UKismetMathLibrary::Vector4_Size(ProjectileCurrentScale) * 85, 12, FColor::Red, false, 2.f);
+    auto DamageType = UDamageType::StaticClass();
+    TArray<AActor *> IgnoreActors;
+    IgnoreActors.Add(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+    UGameplayStatics::ApplyRadialDamage(GetWorld(), Damage, GetActorLocation(), UKismetMathLibrary::Vector4_Size(ProjectileCurrentScale) * 85, DamageType, IgnoreActors, GetOwner());
     Destroy();
 }
 

@@ -7,6 +7,12 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "Camera/CameraComponent.h"
 
+AHopeAndPrison::AHopeAndPrison()
+{
+    ShotgunSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Shotgun SpawnPoint"));
+    ShotgunSpawnPoint->SetupAttachment(ProjectileSpawnPoint);
+}
+
 void AHopeAndPrison::ShootPrimary(float &Ammo)
 {
     CurrentFireRate = FireRate;
@@ -15,8 +21,8 @@ void AHopeAndPrison::ShootPrimary(float &Ammo)
         FHitResult Hit;
         ASen *Sen = Cast<ASen>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
-        FVector TraceStart = Sen->GetCameraComponent()->GetComponentLocation();
-        FVector TraceEnd = UKismetMathLibrary::GetForwardVector(Sen->GetCameraComponent()->GetComponentRotation()) * 5000;
+        FVector TraceStart = ProjectileSpawnPoint->GetComponentLocation();
+        FVector TraceEnd = UKismetMathLibrary::GetForwardVector(ProjectileSpawnPoint->GetComponentRotation()) * 5000;
 
         FCollisionQueryParams QueryParams;
         QueryParams.AddIgnoredActor(this);
@@ -26,11 +32,10 @@ void AHopeAndPrison::ShootPrimary(float &Ammo)
 
         if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
         {
-            UE_LOG(LogTemp, Log, TEXT("Trace hit actor: %s"), *Hit.GetActor()->GetName());
-        }
-        else
-        {
-            UE_LOG(LogTemp, Log, TEXT("No Actors were hit"));
+            auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
+            auto DamageType = UDamageType::StaticClass();
+
+            UGameplayStatics::ApplyDamage(Hit.GetActor(), FireDamage, MyOwnerInstigator, GetOwner(), DamageType);
         }
 
         bReadyToFire = false;
@@ -41,11 +46,28 @@ void AHopeAndPrison::ShootPrimary(float &Ammo)
         Ammo -= PrimaryAmmoCost;
     }
 }
+
 void AHopeAndPrison::ShootSecondary(float &Ammo)
 {
     CurrentFireRate = SecondaryFireRate;
-    UE_LOG(LogTemp, Display, TEXT("Hope & Prison: Secondary"));
+    if (bReadyToFire && Ammo >= SecondaryFireRate)
+    {
+        bReadyToFire = false;
+        FTimerHandle Handle;
+        GetWorldTimerManager().SetTimer(Handle, this, &AHopeAndPrison::SetNextFire, CurrentFireRate, false);
+
+        TArray<AActor *> IgnoreActors;
+        IgnoreActors.Add(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+        auto DamageType = UDamageType::StaticClass();
+        UGameplayStatics::ApplyRadialDamage(GetWorld(), ShotgunDamage, ShotgunSpawnPoint->GetComponentLocation(), ShotgunRadius, DamageType, IgnoreActors, GetOwner());
+
+        DrawDebugSphere(GetWorld(), ShotgunSpawnPoint->GetComponentLocation(), ShotgunRadius, 12, FColor::Red, false, 2.f);
+
+        UE_LOG(LogTemp, Display, TEXT("Hope & Prison: Secondary"));
+        Ammo -= SecondaryAmmoCost;
+    }
 }
+
 void AHopeAndPrison::ShootMidAir(float &Ammo)
 {
     UE_LOG(LogTemp, Display, TEXT("Hope & Prison: ShootMidAir"));
@@ -80,6 +102,9 @@ void AHopeAndPrison::ShootMidAir(float &Ammo)
             ProjectedPlayerLocation.Z = Enemy->GetActorLocation().Z;
             FVector DirectionFromPlayer = ProjectedPlayerLocation - Enemy->GetActorLocation();
             Enemy->LaunchCharacter(DirectionFromPlayer * ExpansiveRepelForce, false, false);
+            auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
+            auto DamageType = UDamageType::StaticClass();
+            UGameplayStatics::ApplyDamage(Enemy, ShotgunDamage, MyOwnerInstigator, GetOwner(), DamageType);
             UE_LOG(LogTemp, Display, TEXT("Enemy detected"));
         }
 
