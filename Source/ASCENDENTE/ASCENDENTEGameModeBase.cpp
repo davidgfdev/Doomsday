@@ -12,7 +12,7 @@ void AASCENDENTEGameModeBase::BeginPlay()
     StartGame();
 
     FTimerHandle MarkingTimerHandler;
-    GetWorldTimerManager().SetTimer(MarkingTimerHandler, this, &AASCENDENTEGameModeBase::MarkEnemies, 45, true);
+    GetWorldTimerManager().SetTimer(MarkingTimerHandler, this, &AASCENDENTEGameModeBase::MarkEnemies, MarkingSeconds, true);
 }
 
 void AASCENDENTEGameModeBase::ActorDied(AActor *DeadActor)

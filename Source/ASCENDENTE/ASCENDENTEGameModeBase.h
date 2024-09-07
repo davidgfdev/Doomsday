@@ -25,4 +25,7 @@ protected:
 
 private:
 	void MarkEnemies();
+
+	UPROPERTY(EditAnywhere, Category = "Absolution")
+	int MarkingSeconds = 45;
 };

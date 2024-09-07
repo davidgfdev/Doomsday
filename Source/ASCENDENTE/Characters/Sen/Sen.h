@@ -57,6 +57,10 @@ private:
 	float DashCooldownSeconds = 2;
 	UPROPERTY(EditAnywhere, Category = "Ammo")
 	float MaxAmmo = 100;
+	UPROPERTY(EditAnywhere, Category = "Absolution")
+	float AmmoPerAbsolution = 50;
+	UPROPERTY(EditAnywhere, Category = "Absolution")
+	float AbsolutionDamage = 30;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TArray<TSubclassOf<class AWeaponBase>> Weapons;
@@ -85,8 +89,12 @@ private:
 	void ChangeWeapon();
 	void HPPrimaryFire();
 	void HPSecondaryFire();
+	void Absolution();
 
 	APlayerController *SenPlayerController;
+
+	UPROPERTY(EditAnywhere, Category = "Collision")
+	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
 
 public:
 	void SwitchMovementMode(bool bIsMoving);

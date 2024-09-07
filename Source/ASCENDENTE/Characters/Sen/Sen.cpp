@@ -10,6 +10,7 @@
 #include "..\Source\ASCENDENTE\Weapons\WeaponBase.h"
 #include "..\Source\ASCENDENTE\Weapons\Nihilist.h"
 #include "..\Source\ASCENDENTE\Weapons\HopeAndPrison.h"
+#include "..\Source\ASCENDENTE\Characters\Enemies\Enemy.h"
 
 ASen::ASen()
 {
@@ -40,6 +41,7 @@ void ASen::SetupPlayerInputComponent(UInputComponent *PlayerInputComponent)
     PlayerInputComponent->BindAction(TEXT("HPSecondaryFire"), IE_Pressed, this, &ASen::HPSecondaryFire);
     PlayerInputComponent->BindAxis(TEXT("SecondaryFire"), this, &ASen::SecondaryFire);
     PlayerInputComponent->BindAction(TEXT("ChangeWeapon"), IE_Pressed, this, &ASen::ChangeWeapon);
+    PlayerInputComponent->BindAction(TEXT("Absolution"), IE_Pressed, this, &ASen::Absolution);
 }
 
 void ASen::BeginPlay()
@@ -269,5 +271,39 @@ void ASen::SwitchMovementMode(bool bIsMoving)
     else
     {
         GetCharacterMovement()->MaxWalkSpeed = 0.0f;
+    }
+}
+
+void ASen::Absolution()
+{
+    FHitResult Hit;
+
+    FVector TraceEnd = UKismetMathLibrary::GetForwardVector(GetActorRotation()) * 5000;
+
+    FCollisionQueryParams QueryParams;
+    QueryParams.AddIgnoredActor(this);
+
+    GetWorld()->LineTraceSingleByChannel(Hit, GetActorLocation(), TraceEnd, TraceChannelProperty, QueryParams);
+    DrawDebugLine(GetWorld(), GetActorLocation(), TraceEnd, FColor::Yellow, false, 3, 0, 1.5f);
+
+    if (Hit.bBlockingHit && IsValid(Hit.GetActor()) && Hit.GetActor()->IsA(AEnemy::StaticClass()) && Cast<AEnemy>(Hit.GetActor())->bIsMarkedForAbsolution)
+    {
+        CurrentAmmo += AmmoPerAbsolution;
+
+        if (CurrentAmmo > MaxAmmo)
+        {
+            CurrentAmmo = MaxAmmo;
+        }
+
+        UpdateAmmo(CurrentAmmo);
+
+        auto MyOwnerInstigator = GetInstigatorController();
+        auto DamageType = UDamageType::StaticClass();
+
+        UGameplayStatics::ApplyDamage(Hit.GetActor(), AbsolutionDamage, MyOwnerInstigator, this, DamageType);
+        if (Hit.GetActor())
+        {
+            Cast<AEnemy>(Hit.GetActor())->bIsMarkedForAbsolution = false;
+        }
     }
 }
