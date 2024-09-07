@@ -3,13 +3,16 @@
 #include "ASCENDENTEGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "..\Source\ASCENDENTE\Characters\Enemies\Enemy.h"
 
 void AASCENDENTEGameModeBase::BeginPlay()
 {
     Super::BeginPlay();
 
     StartGame();
-    MarkEnemies();
+
+    FTimerHandle MarkingTimerHandler;
+    GetWorldTimerManager().SetTimer(MarkingTimerHandler, this, &AASCENDENTEGameModeBase::MarkEnemies, 45, true);
 }
 
 void AASCENDENTEGameModeBase::ActorDied(AActor *DeadActor)
@@ -32,25 +35,25 @@ void AASCENDENTEGameModeBase::MarkEnemies()
 
     UKismetSystemLibrary::SphereOverlapActors(GetWorld(),
                                               Sen->GetActorLocation(),
-                                              1000,
+                                              800,
                                               ObjectTypes,
-                                              AActor::StaticClass(),
+                                              AEnemy::StaticClass(),
                                               ActorsToIgnore,
                                               EnemiesInRange);
 
     if (EnemiesInRange.Num() > 0)
     {
-        DrawDebugSphere(GetWorld(), Sen->GetActorLocation(), 1000, 12, FColor::Purple, false, 2.f);
+        DrawDebugSphere(GetWorld(), Sen->GetActorLocation(), 800, 12, FColor::Purple, false, 2.f);
 
         for (int i = 0; i < EnemiesInRange.Num(); i++)
         {
-            AActor *Enemy = Cast<AActor>(EnemiesInRange[i]);
+            AEnemy *Enemy = Cast<AEnemy>(EnemiesInRange[i]);
             int RandomInt = UKismetMathLibrary::RandomIntegerInRange(0, 100);
-            if (RandomInt > 65)
+            if (RandomInt > 65 && !Enemy->bIsMarkedForAbsolution)
             {
                 UE_LOG(LogTemp, Display, TEXT("Enemigo marcado"));
                 EnemiesMarked += 1;
-                DrawDebugSphere(GetWorld(), Enemy->GetActorLocation(), 200, 12, FColor::Yellow, false, 60);
+                Enemy->MarkForAbsolution();
             }
         }
 
