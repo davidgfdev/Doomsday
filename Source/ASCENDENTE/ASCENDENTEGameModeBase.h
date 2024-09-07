@@ -7,7 +7,7 @@
 #include "ASCENDENTEGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class ASCENDENTE_API AASCENDENTEGameModeBase : public AGameModeBase
@@ -16,11 +16,13 @@ class ASCENDENTE_API AASCENDENTEGameModeBase : public AGameModeBase
 
 public:
 	void ActorDied(AActor *DeadActor);
-	
+
 protected:
 	virtual void BeginPlay();
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();
-	
+
+private:
+	void MarkEnemies();
 };
