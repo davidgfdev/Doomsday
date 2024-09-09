@@ -25,11 +25,18 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	void HandleDeath();
+
+	void AddAscensionKills();
+
 	class UCameraComponent *GetCameraComponent() const { return CameraComponent; }
 
 protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateAmmo(float Ammo);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateAscendPanel(bool isVisible);
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -61,6 +68,16 @@ private:
 	float AmmoPerAbsolution = 50;
 	UPROPERTY(EditAnywhere, Category = "Absolution")
 	float AbsolutionDamage = 30;
+	UPROPERTY(EditAnywhere, Category = "Ascension")
+	float TimeBetweenAscensions = 150;
+	UPROPERTY(EditAnywhere, Category = "Ascension")
+	float AscensionDuration = 20;
+	UPROPERTY(EditAnywhere, Category = "Ascension")
+	float AscensionExtraDamagePercent = 1.70;
+	UPROPERTY(EditAnywhere, Category = "Ascension")
+	float AscensionBuffDuration = 60;
+	UPROPERTY(EditAnywhere, Category = "Ascension")
+	float AscensionHealth = 70;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TArray<TSubclassOf<class AWeaponBase>> Weapons;
@@ -74,6 +91,9 @@ private:
 	float StrafeAxisValue = 0;
 	float OriginalMaxSpeed = 1000;
 	float CurrentAmmo = 100;
+	bool bCanAscend = true;
+	bool bIsAscending = false;
+	int AscensionKills = 0;
 
 	void Aim(float Value);
 	void Turn(float Value);
@@ -90,6 +110,10 @@ private:
 	void HPPrimaryFire();
 	void HPSecondaryFire();
 	void Absolution();
+	void Ascend();
+	void AscensionCooldown();
+	void DisableAscension();
+	void AscendanceEnd();
 
 	APlayerController *SenPlayerController;
 

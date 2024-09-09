@@ -4,6 +4,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "..\Source\ASCENDENTE\Characters\Enemies\Enemy.h"
+#include "..\Source\ASCENDENTE\Characters\Sen\Sen.h"
 
 void AASCENDENTEGameModeBase::BeginPlay()
 {
@@ -17,7 +18,16 @@ void AASCENDENTEGameModeBase::BeginPlay()
 
 void AASCENDENTEGameModeBase::ActorDied(AActor *DeadActor)
 {
-    DeadActor->Destroy();
+    if (DeadActor->IsA(ASen::StaticClass()))
+    {
+        Cast<ASen>(DeadActor)->HandleDeath();
+    }
+    else
+    {
+        ASen *Sen = Cast<ASen>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
+        Sen->AddAscensionKills();
+        DeadActor->Destroy();
+    }
 }
 
 void AASCENDENTEGameModeBase::MarkEnemies()

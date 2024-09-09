@@ -307,3 +307,60 @@ void ASen::Absolution()
         }
     }
 }
+
+void ASen::HandleDeath()
+{
+    if (bCanAscend)
+    {
+        UE_LOG(LogTemp, Display, TEXT("Iniciando Ascenso"));
+        bCanAscend = false;
+        bIsAscending = true;
+        UpdateAscendPanel(true);
+        AscensionKills = 0;
+
+        FTimerHandle AscensionHandler;
+        GetWorldTimerManager().SetTimer(AscensionHandler, this, &ASen::AscendanceEnd, AscensionDuration, false);
+    }
+    else
+    {
+        Destroy();
+    }
+}
+
+void ASen::DisableAscension()
+{
+    UpdateAscendPanel(false);
+}
+
+void ASen::Ascend()
+{
+    UpdateAscendPanel(false);
+    UE_LOG(LogTemp, Display, TEXT("ASCENDIDO"));
+    bIsAscending = false;
+    FTimerHandle AscensionHandler;
+    GetWorldTimerManager().SetTimer(AscensionHandler, this, &ASen::AscensionCooldown, TimeBetweenAscensions, false);
+}
+
+void ASen::AscensionCooldown()
+{
+    bCanAscend = true;
+}
+
+void ASen::AscendanceEnd()
+{
+    if (bIsAscending)
+    {
+        bIsAscending = false;
+        UpdateAscendPanel(false);
+        HandleDeath();
+    }
+}
+
+void ASen::AddAscensionKills()
+{
+    AscensionKills++;
+    if (AscensionKills >= 3)
+    {
+        Ascend();
+    }
+}
