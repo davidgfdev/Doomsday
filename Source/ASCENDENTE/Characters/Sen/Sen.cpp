@@ -11,6 +11,7 @@
 #include "..\Source\ASCENDENTE\Weapons\Nihilist.h"
 #include "..\Source\ASCENDENTE\Weapons\HopeAndPrison.h"
 #include "..\Source\ASCENDENTE\Characters\Enemies\Enemy.h"
+#include "..\Source\ASCENDENTE\Components\HealthComponent.h"
 
 ASen::ASen()
 {
@@ -336,6 +337,11 @@ void ASen::Ascend()
 {
     UpdateAscendPanel(false);
     UE_LOG(LogTemp, Display, TEXT("ASCENDIDO"));
+
+    UHealthComponent *HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
+    HealthComponent->Heal(75);
+    UpdateHealth(HealthComponent->GetHealth());
+
     bIsAscending = false;
     FTimerHandle AscensionHandler;
     GetWorldTimerManager().SetTimer(AscensionHandler, this, &ASen::AscensionCooldown, TimeBetweenAscensions, false);

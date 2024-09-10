@@ -52,3 +52,12 @@ void UHealthComponent::DamageTaken(AActor *DamagedActor, float Damage, const UDa
 		ASCENDENTEGameModeBase->ActorDied(DamagedActor);
 	}
 }
+
+void UHealthComponent::Heal(float Ammount)
+{
+	Health += Ammount;
+	if (Health > MaxHealth)
+	{
+		Health = MaxHealth;
+	}
+}

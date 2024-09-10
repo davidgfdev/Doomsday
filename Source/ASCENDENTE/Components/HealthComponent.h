@@ -23,8 +23,12 @@ public:
 	// Called every frame
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
 
+	void Heal(float Ammount);
+
 	UPROPERTY(EditAnywhere)
 	float MaxHealth = 100.f;
+
+	float GetHealth() { return Health; }
 
 private:
 	float Health = 0.f;
