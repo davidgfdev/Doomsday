@@ -66,10 +66,5 @@ void AASCENDENTEGameModeBase::MarkEnemies()
                 Enemy->MarkForAbsolution();
             }
         }
-
-        if (EnemiesMarked == 0)
-        {
-            MarkEnemies();
-        }
     }
 }

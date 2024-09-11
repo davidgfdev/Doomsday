@@ -118,7 +118,7 @@ private:
 	APlayerController *SenPlayerController;
 
 	UPROPERTY(EditAnywhere, Category = "Collision")
-	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
+	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_WorldDynamic;
 
 public:
 	void SwitchMovementMode(bool bIsMoving);

@@ -48,10 +48,16 @@ void AProjectileBase::OnHit(UPrimitiveComponent *HitComp, AActor *OtherActor, UP
 	{
 		// APPLY DAMAGE
 		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwnerInstigator, this, DamageType);
+		ApplyHitEffects(Hit);
 	}
 
 	if (bItDestroysOnTouch)
 	{
 		Destroy();
 	}
+}
+
+void AProjectileBase::ApplyHitEffects(FHitResult Hit)
+{
+
 }

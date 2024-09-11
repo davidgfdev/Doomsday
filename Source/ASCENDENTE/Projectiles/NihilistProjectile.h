@@ -13,4 +13,11 @@ UCLASS()
 class ASCENDENTE_API ANihilistProjectile : public AProjectileBase
 {
 	GENERATED_BODY()
+
+protected:
+	virtual void ApplyHitEffects(FHitResult Hit);
+
+private:
+	UPROPERTY(EditDefaultsOnly, Category = "WeakPoint")
+	TSubclassOf<AActor> WeakPointClass;
 };

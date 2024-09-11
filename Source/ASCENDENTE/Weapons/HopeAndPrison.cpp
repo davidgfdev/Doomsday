@@ -21,21 +21,29 @@ void AHopeAndPrison::ShootPrimary(float &Ammo)
         FHitResult Hit;
         ASen *Sen = Cast<ASen>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
 
-        FVector TraceStart = ProjectileSpawnPoint->GetComponentLocation();
-        FVector TraceEnd = UKismetMathLibrary::GetForwardVector(ProjectileSpawnPoint->GetComponentRotation()) * 5000;
+        TArray<UCameraComponent *> CameraComps;
+        Sen->GetComponents<UCameraComponent>(CameraComps);
 
-        FCollisionQueryParams QueryParams;
-        QueryParams.AddIgnoredActor(this);
-
-        GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
-        DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Orange, false, 3, 0, 1.5f);
-
-        if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
+        if (CameraComps.Num() > 0)
         {
-            auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
-            auto DamageType = UDamageType::StaticClass();
+            FVector TraceStart = CameraComps[0]->GetComponentLocation();
+            FVector TraceEnd = UKismetMathLibrary::GetForwardVector(CameraComps[0]->GetComponentRotation()) * 5000;
 
-            UGameplayStatics::ApplyDamage(Hit.GetActor(), FireDamage, MyOwnerInstigator, GetOwner(), DamageType);
+            FCollisionQueryParams QueryParams;
+            QueryParams.AddIgnoredActor(this);
+            QueryParams.AddIgnoredActor(GetOwner());
+
+            GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
+            DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Orange, false, 3, 0, 1.5f);
+
+            if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
+            {
+                UE_LOG(LogTemp, Display, TEXT("LE HE HECHO DAÑO DE RAYO A %s"), *Hit.GetActor()->GetName());
+                auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
+                auto DamageType = UDamageType::StaticClass();
+
+                UGameplayStatics::ApplyDamage(Hit.GetActor(), FireDamage, MyOwnerInstigator, this, DamageType);
+            }
         }
 
         bReadyToFire = false;

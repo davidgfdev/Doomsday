@@ -19,6 +19,8 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	virtual void ApplyHitEffects(FHitResult Hit);
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
