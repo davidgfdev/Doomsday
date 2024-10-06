@@ -27,18 +27,16 @@ void AHopeAndPrison::ShootPrimary(float &Ammo)
         if (CameraComps.Num() > 0)
         {
             FVector TraceStart = CameraComps[0]->GetComponentLocation();
-            FVector TraceEnd = UKismetMathLibrary::GetForwardVector(CameraComps[0]->GetComponentRotation()) * 5000;
+            FVector TraceEnd = TraceStart + UKismetMathLibrary::GetForwardVector(CameraComps[0]->GetComponentRotation()) * 5000;
 
             FCollisionQueryParams QueryParams;
             QueryParams.AddIgnoredActor(this);
             QueryParams.AddIgnoredActor(GetOwner());
 
             GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
-            DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Orange, false, 3, 0, 1.5f);
 
             if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
             {
-                UE_LOG(LogTemp, Display, TEXT("LE HE HECHO DAÑO DE RAYO A %s"), *Hit.GetActor()->GetName());
                 auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
                 auto DamageType = UDamageType::StaticClass();
 

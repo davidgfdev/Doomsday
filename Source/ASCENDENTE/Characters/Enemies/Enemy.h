@@ -15,13 +15,46 @@ class ASCENDENTE_API AEnemy : public ABasicCharacter
 	GENERATED_BODY()
 
 public:
+	AEnemy();
+
+protected:
+	virtual void BeginPlay() override;
+	virtual void Tick(float DeltaTime) override;
+
+public:
 	void MarkForAbsolution();
 
+	void ReactToHit();
+
 	bool bIsMarkedForAbsolution = false;
+
+	class ASen *GetSenReference() { return SenReference; }
 
 private:
 	UPROPERTY(EditAnywhere, Category = "Absolution")
 	int AbsolutionTime = 30;
 
 	void DisableAbsolution();
+	void ReturnSpriteToNormal();
+	void LookAtPlayer();
+
+protected:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
+	class UPaperSpriteComponent *EnemySprite;
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateBlackboardAggro();
+
+	UPROPERTY(EditAnywhere, Category = "Aggro")
+	float AggroRange = 800;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Aggro")
+	bool doesPlayerHasAggro = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Effects")
+	float HitColorDuration = 0.4f;
+
+	void CheckPlayerDistance();
+
+	class ASen *SenReference;
 };

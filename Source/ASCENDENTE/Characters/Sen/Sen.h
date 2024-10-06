@@ -38,6 +38,9 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateAscendPanel(bool isVisible);
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateCrosshairSize(float Speed);
+
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent *CameraComponent;

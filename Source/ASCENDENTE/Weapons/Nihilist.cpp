@@ -32,7 +32,6 @@ void ANihilist::ShootSecondary(float &Ammo)
     CurrentFireRate = SecondaryFireRate;
     ASen *Player = Cast<ASen>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
     Player->SwitchMovementMode(false);
-    WeaponMesh->SetRelativeLocation(PositionWhilePlanted);
     if (bReadyToFire && Ammo >= SecondaryAmmoCost)
     {
         bReadyToFire = false;
@@ -76,7 +75,6 @@ void ANihilist::RecoverMovement()
 {
     ASen *Player = Cast<ASen>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
     Player->SwitchMovementMode(true);
-    WeaponMesh->SetRelativeLocation(OriginalWeaponPosition);
 }
 
 void ANihilist::SetNextOrb()

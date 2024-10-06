@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "WeaponBase.h"
+#include "PaperSpriteComponent.h"
 
 // Sets default values
 AWeaponBase::AWeaponBase()
@@ -8,11 +9,14 @@ AWeaponBase::AWeaponBase()
 	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-	WeaponMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("Weapon Mesh"));
-	RootComponent = WeaponMesh;
+	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Scene Root"));
+	RootComponent = SceneRoot;
+
+	WeaponSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Weapon Sprite"));
+	WeaponSprite->SetupAttachment(SceneRoot);
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile SpawnPoint"));
-	ProjectileSpawnPoint->SetupAttachment(WeaponMesh);
+	ProjectileSpawnPoint->SetupAttachment(WeaponSprite);
 }
 
 // Called when the game starts or when spawned

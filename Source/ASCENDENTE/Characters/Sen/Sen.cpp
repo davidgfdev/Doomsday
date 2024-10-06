@@ -16,7 +16,9 @@
 ASen::ASen()
 {
     SpringArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
+    SpringArmComponent->SetMobility(EComponentMobility::Movable);
     SpringArmComponent->SetupAttachment(RootComponent);
+    SpringArmComponent->SetMobility(EComponentMobility::Movable);
 
     CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
     CameraComponent->SetupAttachment(SpringArmComponent);
@@ -111,6 +113,7 @@ void ASen::MoveForward(float Value)
     MoveForwardAxisValue = Value;
     FVector ForwardDirection = UKismetMathLibrary::GetForwardVector(GetActorRotation());
     AddMovementInput(ForwardDirection, Value);
+    UpdateCrosshairSize(Value);
 }
 
 void ASen::Strafe(float Value)
@@ -118,6 +121,7 @@ void ASen::Strafe(float Value)
     StrafeAxisValue = Value;
     FVector RightDirection = UKismetMathLibrary::GetRightVector(GetActorRotation());
     AddMovementInput(RightDirection, Value);
+    UpdateCrosshairSize(Value);
 }
 
 void ASen::StartJump()

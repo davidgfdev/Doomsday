@@ -4,6 +4,7 @@
 #include "..\Source\ASCENDENTE\ASCENDENTEGameModeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "../Source\ASCENDENTE\Characters\BasicCharacter.h"
+#include "../Source\ASCENDENTE\Characters\Enemies\Enemy.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
@@ -46,6 +47,10 @@ void UHealthComponent::DamageTaken(AActor *DamagedActor, float Damage, const UDa
 
 	Health -= Damage;
 	Cast<ABasicCharacter>(GetOwner())->UpdateHealth(Health);
+
+	if (GetOwner()->IsA(AEnemy::StaticClass())){
+		Cast<AEnemy>(GetOwner())->ReactToHit();
+	}
 
 	if (Health <= 0.f && ASCENDENTEGameModeBase)
 	{

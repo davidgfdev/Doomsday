@@ -37,10 +37,6 @@ private:
 	float RecoverMovementTime = 0.2;
 	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float OrbCooldown = 8;
-	UPROPERTY(EditAnywhere, Category = "Position")
-	FVector PositionWhilePlanted;
-	UPROPERTY(EditAnywhere, Category = "Position")
-	FVector OriginalWeaponPosition;
 
 	bool bReadyToFire = true;
 	float CurrentFireRate;
