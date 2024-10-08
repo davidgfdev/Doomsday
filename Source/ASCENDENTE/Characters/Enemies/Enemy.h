@@ -23,8 +23,8 @@ protected:
 
 public:
 	void MarkForAbsolution();
-
 	void ReactToHit();
+	virtual void Attack();
 
 	bool bIsMarkedForAbsolution = false;
 

@@ -76,3 +76,5 @@ void AEnemy::LookAtPlayer()
 
     SetActorRotation(FQuat::MakeFromRotator(LookAtRotation));
 }
+
+void AEnemy::Attack() {}
