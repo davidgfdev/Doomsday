@@ -2,6 +2,7 @@
 
 #include "Faithful.h"
 #include "..\Source\ASCENDENTE\Characters\Sen\Sen.h"
+#include "Kismet/GameplayStatics.h"
 
 void AFaithful::BeginPlay()
 {
@@ -19,6 +20,13 @@ void AFaithful::Tick(float DeltaTime)
 void AFaithful::Attack()
 {
     UE_LOG(LogTemp, Display, TEXT("Atacando al jugador"));
+    TArray<AActor *> IgnoreActors;
+    IgnoreActors.Add(this);
+    auto DamageType = UDamageType::StaticClass();
+    UGameplayStatics::ApplyRadialDamage(GetWorld(), Damage, ProjectileSpawnPoint->GetComponentLocation(), AttackRadius, DamageType, IgnoreActors, this);
+    DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), AttackRadius, 12, FColor::Red, false, 2);
+
+    Super::Attack();
 }
 
 void AFaithful::CheckPlayerInRange()

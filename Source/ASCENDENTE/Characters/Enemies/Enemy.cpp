@@ -12,6 +12,9 @@ AEnemy::AEnemy()
 {
     EnemySprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Enemy Sprite"));
     EnemySprite->SetupAttachment(RootComponent);
+
+    ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile SpawnPoint"));
+	ProjectileSpawnPoint->SetupAttachment(RootComponent);
 }
 
 void AEnemy::BeginPlay()

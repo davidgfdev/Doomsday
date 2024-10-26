@@ -29,6 +29,10 @@ protected:
 
 	UPROPERTY(BlueprintReadOnly, Category = "Attack")
 	bool isPlayerInRange = false;
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	float Damage = 25;
+	UPROPERTY(EditAnywhere, Category = "Attack")
+	float AttackRadius = 60;
 
 private:
 	void CheckPlayerInRange();

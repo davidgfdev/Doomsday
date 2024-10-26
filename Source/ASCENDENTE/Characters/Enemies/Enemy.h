@@ -57,4 +57,7 @@ protected:
 	void CheckPlayerDistance();
 
 	class ASen *SenReference;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	USceneComponent *ProjectileSpawnPoint;
 };
