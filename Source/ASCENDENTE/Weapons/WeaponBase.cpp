@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "WeaponBase.h"
-#include "PaperSpriteComponent.h"
+#include "PaperFlipbookComponent.h"
 
 // Sets default values
 AWeaponBase::AWeaponBase()
@@ -12,11 +12,11 @@ AWeaponBase::AWeaponBase()
 	SceneRoot = CreateDefaultSubobject<USceneComponent>(TEXT("Scene Root"));
 	RootComponent = SceneRoot;
 
-	WeaponSprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Weapon Sprite"));
-	WeaponSprite->SetupAttachment(SceneRoot);
+	WeaponFlipbook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Weapon Flipbook"));
+	WeaponFlipbook->SetupAttachment(SceneRoot);
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile SpawnPoint"));
-	ProjectileSpawnPoint->SetupAttachment(WeaponSprite);
+	ProjectileSpawnPoint->SetupAttachment(WeaponFlipbook);
 }
 
 // Called when the game starts or when spawned

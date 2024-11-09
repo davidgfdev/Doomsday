@@ -17,9 +17,9 @@ class ASCENDENTE_API AHopeAndPrison : public AWeaponBase
 public:
 	AHopeAndPrison();
 
-	virtual void ShootPrimary(float &Ammo) override;
-	virtual void ShootSecondary(float &Ammo) override;
-	virtual void ShootMidAir(float &Ammo) override;
+	void StartShootPrimary(float &Ammo);
+	void StartShootSecondary(float &Ammo);
+	void StartShootMidAir(float &Ammo);
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -47,6 +47,16 @@ private:
 	UPROPERTY(EditAnywhere, Category = "Collision")
 	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	class UPaperFlipbook *ShootFlipbook;
+	UPROPERTY(EditDefaultsOnly, Category = "Animation")
+	class UPaperFlipbook *IdleFlipbook;
+
 	void SetNextFire();
 	void SetNextExpansive();
+
+protected:
+	virtual void ShootPrimary(float &Ammo) override;
+	virtual void ShootSecondary(float &Ammo) override;
+	virtual void ShootMidAir(float &Ammo) override;
 };

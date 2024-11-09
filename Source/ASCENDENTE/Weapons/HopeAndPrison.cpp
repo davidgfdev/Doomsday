@@ -6,6 +6,9 @@
 #include "..\Source\ASCENDENTE\Characters\Sen\Sen.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Camera/CameraComponent.h"
+#include "PaperFlipbookComponent.h"
+#include "PaperFlipbook.h"
+#include "TimerManager.h"
 
 AHopeAndPrison::AHopeAndPrison()
 {
@@ -76,7 +79,7 @@ void AHopeAndPrison::ShootSecondary(float &Ammo)
 
 void AHopeAndPrison::ShootMidAir(float &Ammo)
 {
-    UE_LOG(LogTemp, Display, TEXT("Hope & Prison: ShootMidAir"));
+    UE_LOG(LogTemp, Display, TEXT("Hope & Prison: StartShootMidAir"));
     if (bExpansiveReady && Ammo >= MidAirAmmoCost)
     {
         bExpansiveReady = false;

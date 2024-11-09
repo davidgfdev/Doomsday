@@ -7,6 +7,7 @@
 #include "Kismet/KismetMathLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "TimerManager.h"
+#include "Shakes/LegacyCameraShake.h"
 #include "..\Source\ASCENDENTE\Weapons\WeaponBase.h"
 #include "..\Source\ASCENDENTE\Weapons\Nihilist.h"
 #include "..\Source\ASCENDENTE\Weapons\HopeAndPrison.h"
@@ -23,8 +24,11 @@ ASen::ASen()
     CameraComponent = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
     CameraComponent->SetupAttachment(SpringArmComponent);
 
+    WeaponArmComponent = CreateDefaultSubobject<USpringArmComponent>(TEXT("WeaponArm"));
+    WeaponArmComponent->SetupAttachment(CameraComponent);
+
     Weapon = CreateDefaultSubobject<UChildActorComponent>(TEXT("Weapon"));
-    Weapon->SetupAttachment(CameraComponent);
+    Weapon->SetupAttachment(WeaponArmComponent);
 }
 
 // Called to bind functionality to input
@@ -85,6 +89,11 @@ void ASen::Tick(float DeltaTime)
     {
         Jump();
         bCanDoubleJump = true;
+    }
+
+    if (HeadBobCameraShake)
+    {
+        HeadBob();
     }
 }
 
@@ -175,7 +184,7 @@ void ASen::PrimaryFire(float Value)
         {
             if (!Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
             {
-                Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary(CurrentAmmo);
+                Cast<AWeaponBase>(Weapon->GetChildActor())->StartShootPrimary(CurrentAmmo);
                 UpdateAmmo(CurrentAmmo);
             }
         }
@@ -188,7 +197,7 @@ void ASen::HPPrimaryFire()
     {
         if (Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
         {
-            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootPrimary(CurrentAmmo);
+            Cast<AWeaponBase>(Weapon->GetChildActor())->StartShootPrimary(CurrentAmmo);
             UpdateAmmo(CurrentAmmo);
         }
     }
@@ -211,7 +220,7 @@ void ASen::SecondaryFire(float Value)
             {
                 if (!Weapon->GetChildActor()->IsA(AHopeAndPrison::StaticClass()))
                 {
-                    Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary(CurrentAmmo);
+                    Cast<AWeaponBase>(Weapon->GetChildActor())->StartShootSecondary(CurrentAmmo);
                     UpdateAmmo(CurrentAmmo);
                 }
             }
@@ -233,7 +242,7 @@ void ASen::HPSecondaryFire()
             {
                 MidAirFire();
             }
-            Cast<AWeaponBase>(Weapon->GetChildActor())->ShootSecondary(CurrentAmmo);
+            Cast<AWeaponBase>(Weapon->GetChildActor())->StartShootSecondary(CurrentAmmo);
             UpdateAmmo(CurrentAmmo);
         }
     }
@@ -243,7 +252,7 @@ void ASen::MidAirFire()
 {
     if (Weapon)
     {
-        Cast<AWeaponBase>(Weapon->GetChildActor())->ShootMidAir(CurrentAmmo);
+        Cast<AWeaponBase>(Weapon->GetChildActor())->StartShootMidAir(CurrentAmmo);
         UpdateAmmo(CurrentAmmo);
     }
 }
@@ -372,5 +381,18 @@ void ASen::AddAscensionKills()
     if (AscensionKills >= 3)
     {
         Ascend();
+    }
+}
+
+void ASen::HeadBob()
+{
+    double VelocityLength = GetVelocity().Length();
+    FVector NormalizedVelocity = GetVelocity();
+    NormalizedVelocity.Normalize(0.0001f);
+    double NormalizedVelocityLength = NormalizedVelocity.Length();
+
+    if (VelocityLength > 0 && CanJump())
+    {
+        SenPlayerController->ClientStartCameraShake(HeadBobCameraShake, NormalizedVelocityLength * HeadbobFactor);
     }
 }

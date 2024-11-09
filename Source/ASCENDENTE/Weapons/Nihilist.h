@@ -15,14 +15,18 @@ class ASCENDENTE_API ANihilist : public AWeaponBase
 	GENERATED_BODY()
 
 public:
-	virtual void ShootPrimary(float &Ammo) override;
-	virtual void ShootSecondary(float &Ammo) override;
-	virtual void ShootMidAir(float &Ammo) override;
-
 	void RecoverMovement();
+
+	void StartShootPrimary(float &Ammo);
+	void StartShootSecondary(float &Ammo);
+	void StartShootMidAir(float &Ammo);
 
 protected:
 	virtual void BeginPlay() override;
+
+	virtual void ShootPrimary(float &Ammo) override;
+	virtual void ShootSecondary(float &Ammo) override;
+	virtual void ShootMidAir(float &Ammo) override;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")

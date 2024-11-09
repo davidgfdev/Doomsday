@@ -49,6 +49,9 @@ private:
 	class USpringArmComponent *SpringArmComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class USpringArmComponent *WeaponArmComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UChildActorComponent *Weapon;
 
 	UPROPERTY(EditAnywhere, Category = "Aim")
@@ -81,9 +84,14 @@ private:
 	float AscensionBuffDuration = 60;
 	UPROPERTY(EditAnywhere, Category = "Ascension")
 	float AscensionHealth = 70;
+	UPROPERTY(EditAnywhere, Category = "Headbob")
+	float HeadbobFactor = 1;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TArray<TSubclassOf<class AWeaponBase>> Weapons;
+
+	UPROPERTY(EditAnywhere, Category = "Headbob")
+	TSubclassOf<class ULegacyCameraShake> HeadBobCameraShake;
 
 	float CoyoteTime;
 	float BufferTime;
@@ -117,6 +125,7 @@ private:
 	void AscensionCooldown();
 	void DisableAscension();
 	void AscendanceEnd();
+	void HeadBob();
 
 	APlayerController *SenPlayerController;
 
