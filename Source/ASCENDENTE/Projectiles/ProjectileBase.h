@@ -21,6 +21,9 @@ protected:
 
 	virtual void ApplyHitEffects(FHitResult Hit);
 
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+	class UProjectileMovementComponent* ProjectileMovement;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -32,8 +35,6 @@ public:
 	float Damage = 50.f;
 
 private:
-	UPROPERTY(VisibleAnywhere, Category = "Movement")
-	class UProjectileMovementComponent *ProjectileMovement;
 
 	UPROPERTY(EditAnywhere)
 	bool bItDestroysOnTouch = true;

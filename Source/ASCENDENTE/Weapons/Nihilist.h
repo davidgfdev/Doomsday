@@ -17,16 +17,14 @@ class ASCENDENTE_API ANihilist : public AWeaponBase
 public:
 	void RecoverMovement();
 
-	void StartShootPrimary(float &Ammo);
-	void StartShootSecondary(float &Ammo);
-	void StartShootMidAir(float &Ammo);
+	void StartShootPrimary();
+	void StartShootSecondary();
 
 protected:
 	virtual void BeginPlay() override;
 
-	virtual void ShootPrimary(float &Ammo) override;
-	virtual void ShootSecondary(float &Ammo) override;
-	virtual void ShootMidAir(float &Ammo) override;
+	virtual void ShootPrimary() override;
+	virtual void ShootSecondary() override;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
@@ -35,14 +33,11 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectileBase> OrbClass;
 
-	UPROPERTY(EditAnywhere, Category = "Cooldown")
-	float SecondaryFireRate = 0.05f;
 	UPROPERTY(EditAnywhere, Category = "Secondary Mode")
 	float RecoverMovementTime = 0.2;
 	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float OrbCooldown = 8;
 
-	bool bReadyToFire = true;
 	float CurrentFireRate;
 	bool bOrbReady = true;
 

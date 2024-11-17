@@ -9,17 +9,18 @@
 #include "PaperFlipbookComponent.h"
 #include "PaperFlipbook.h"
 #include "TimerManager.h"
+#include <ASCENDENTE/Projectiles/ProjectileBase.h>
 
 AHopeAndPrison::AHopeAndPrison()
 {
     ShotgunSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Shotgun SpawnPoint"));
-    ShotgunSpawnPoint->SetupAttachment(ProjectileSpawnPoint);
+    ShotgunSpawnPoint->SetupAttachment(WeaponFlipbook);
 }
 
-void AHopeAndPrison::ShootPrimary(float &Ammo)
+void AHopeAndPrison::ShootPrimary()
 {
     CurrentFireRate = FireRate;
-    if (bReadyToFire && Ammo >= PrimaryAmmoCost)
+    if (bReadyToFire)
     {
         FHitResult Hit;
         ASen *Sen = Cast<ASen>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
@@ -52,75 +53,24 @@ void AHopeAndPrison::ShootPrimary(float &Ammo)
         GetWorldTimerManager().SetTimer(Handle, this, &AHopeAndPrison::SetNextFire, CurrentFireRate, false);
 
         UE_LOG(LogTemp, Display, TEXT("Hope & Prison: Primary"));
-        Ammo -= PrimaryAmmoCost;
     }
 }
 
-void AHopeAndPrison::ShootSecondary(float &Ammo)
-{
-    CurrentFireRate = SecondaryFireRate;
-    if (bReadyToFire && Ammo >= SecondaryFireRate)
-    {
-        bReadyToFire = false;
-        FTimerHandle Handle;
-        GetWorldTimerManager().SetTimer(Handle, this, &AHopeAndPrison::SetNextFire, CurrentFireRate, false);
-
-        TArray<AActor *> IgnoreActors;
-        IgnoreActors.Add(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
-        auto DamageType = UDamageType::StaticClass();
-        UGameplayStatics::ApplyRadialDamage(GetWorld(), ShotgunDamage, ShotgunSpawnPoint->GetComponentLocation(), ShotgunRadius, DamageType, IgnoreActors, GetOwner());
-
-        DrawDebugSphere(GetWorld(), ShotgunSpawnPoint->GetComponentLocation(), ShotgunRadius, 12, FColor::Red, false, 2.f);
-
-        UE_LOG(LogTemp, Display, TEXT("Hope & Prison: Secondary"));
-        Ammo -= SecondaryAmmoCost;
-    }
-}
-
-void AHopeAndPrison::ShootMidAir(float &Ammo)
+void AHopeAndPrison::ShootSecondary()
 {
     UE_LOG(LogTemp, Display, TEXT("Hope & Prison: StartShootMidAir"));
-    if (bExpansiveReady && Ammo >= MidAirAmmoCost)
+    if (bExpansiveReady)
     {
         bExpansiveReady = false;
 
-        TArray<AActor *> EnemiesInRange;
-        TArray<TEnumAsByte<EObjectTypeQuery>> ObjectTypes;
-        ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_WorldDynamic));
-        ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_PhysicsBody));
-        ObjectTypes.Add(UEngineTypes::ConvertToObjectType(ECollisionChannel::ECC_Pawn));
-        TArray<AActor *> ActorsToIgnore;
-        ActorsToIgnore.Add(GetOwner());
-
-        Cast<ACharacter>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0))->LaunchCharacter(-UKismetMathLibrary::GetForwardVector(GetActorRotation()) * ExpansiveImpulse, false, true);
-
-        UKismetSystemLibrary::SphereOverlapActors(GetWorld(),
-                                                  ProjectileSpawnPoint->GetComponentLocation(),
-                                                  ExpansiveRadius,
-                                                  ObjectTypes,
-                                                  ACharacter::StaticClass(),
-                                                  ActorsToIgnore,
-                                                  EnemiesInRange);
-
-        DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), ExpansiveRadius, 12, FColor::Red, false, 2.f);
-
-        for (int i = 0; i < EnemiesInRange.Num(); i++)
-        {
-            ACharacter *Enemy = Cast<ACharacter>(EnemiesInRange[i]);
-            FVector ProjectedPlayerLocation = GetActorLocation();
-            ProjectedPlayerLocation.Z = Enemy->GetActorLocation().Z;
-            FVector DirectionFromPlayer = ProjectedPlayerLocation - Enemy->GetActorLocation();
-            Enemy->LaunchCharacter(DirectionFromPlayer * ExpansiveRepelForce, false, false);
-            auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
-            auto DamageType = UDamageType::StaticClass();
-            UGameplayStatics::ApplyDamage(Enemy, ShotgunDamage, MyOwnerInstigator, GetOwner(), DamageType);
-            UE_LOG(LogTemp, Display, TEXT("Enemy detected"));
-        }
+        FVector SpawnLocation = ShotgunSpawnPoint->GetComponentLocation();
+        FRotator SpawnRotator = ShotgunSpawnPoint->GetComponentRotation();
+        auto Projectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, SpawnLocation, SpawnRotator);
+        Projectile->SetOwner(this);
+        Projectile->Damage = FireDamage;
 
         FTimerHandle HandleExpansiveCooldown;
         GetWorldTimerManager().SetTimer(HandleExpansiveCooldown, this, &AHopeAndPrison::SetNextExpansive, ExpansiveCooldown, false);
-
-        Ammo -= MidAirAmmoCost;
     }
 }
 

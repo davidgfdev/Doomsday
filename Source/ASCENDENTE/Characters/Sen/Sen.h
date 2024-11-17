@@ -116,7 +116,6 @@ private:
 	void StopJump();
 	void Dash();
 	void DashCooldown();
-	void MidAirFire();
 	void ChangeWeapon();
 	void HPPrimaryFire();
 	void HPSecondaryFire();

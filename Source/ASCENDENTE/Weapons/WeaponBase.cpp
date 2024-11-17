@@ -31,12 +31,9 @@ void AWeaponBase::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AWeaponBase::ShootPrimary(float &Ammo)
+void AWeaponBase::ShootPrimary()
 {
 }
-void AWeaponBase::ShootSecondary(float &Ammo)
-{
-}
-void AWeaponBase::ShootMidAir(float &Ammo)
+void AWeaponBase::ShootSecondary()
 {
 }

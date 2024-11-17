@@ -24,31 +24,27 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintImplementableEvent)
-	void StartShootPrimary(float Ammo);
+	void StartShootPrimary();
 	UFUNCTION(BlueprintImplementableEvent)
-	void StartShootSecondary(float Ammo);
-	UFUNCTION(BlueprintImplementableEvent)
-	void StartShootMidAir(float Ammo);
-
-protected:
-	UFUNCTION(BlueprintCallable)
-	virtual void ShootPrimary(float &Ammo);
-	UFUNCTION(BlueprintCallable)
-	virtual void ShootSecondary(float &Ammo);
-	UFUNCTION(BlueprintCallable)
-	virtual void ShootMidAir(float &Ammo);
-
-	UPROPERTY(EditAnywhere, Category = "Damage")
-	float FireDamage;
-	UPROPERTY(EditAnywhere, Category = "Cooldown")
-	float FireRate;
+	void StartShootSecondary();
 
 	UPROPERTY(EditAnywhere, Category = "Ammo")
 	float PrimaryAmmoCost;
 	UPROPERTY(EditAnywhere, Category = "Ammo")
 	float SecondaryAmmoCost;
-	UPROPERTY(EditAnywhere, Category = "Ammo")
-	float MidAirAmmoCost;
+
+	bool bReadyToFire = true;
+
+protected:
+	UFUNCTION(BlueprintCallable)
+	virtual void ShootPrimary();
+	UFUNCTION(BlueprintCallable)
+	virtual void ShootSecondary();
+
+	UPROPERTY(EditAnywhere, Category = "Damage")
+	float FireDamage;
+	UPROPERTY(EditAnywhere, Category = "Cooldown")
+	float FireRate;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	class UPaperFlipbookComponent *WeaponFlipbook;

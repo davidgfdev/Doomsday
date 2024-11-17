@@ -17,9 +17,8 @@ class ASCENDENTE_API AHopeAndPrison : public AWeaponBase
 public:
 	AHopeAndPrison();
 
-	void StartShootPrimary(float &Ammo);
-	void StartShootSecondary(float &Ammo);
-	void StartShootMidAir(float &Ammo);
+	void StartShootPrimary();
+	void StartShootSecondary();
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -29,23 +28,19 @@ private:
 	float SecondaryFireRate = 0.05f;
 	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
 	float ExpansiveCooldown = 3;
-	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
-	float ExpansiveRadius = 3;
-	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
-	float ExpansiveImpulse = 300;
-	UPROPERTY(EditAnywhere, Category = "Expansive Shot")
-	float ExpansiveRepelForce = 500;
 	UPROPERTY(EditAnywhere, Category = "Shotgun")
 	float ShotgunRadius = 1.05f;
 	UPROPERTY(EditAnywhere, Category = "Shotgun")
 	float ShotgunDamage = 10;
 
 	float CurrentFireRate;
-	bool bReadyToFire = true;
 	bool bExpansiveReady = true;
 
 	UPROPERTY(EditAnywhere, Category = "Collision")
 	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class AProjectileBase> ProjectileClass;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Animation")
 	class UPaperFlipbook *ShootFlipbook;
@@ -56,7 +51,6 @@ private:
 	void SetNextExpansive();
 
 protected:
-	virtual void ShootPrimary(float &Ammo) override;
-	virtual void ShootSecondary(float &Ammo) override;
-	virtual void ShootMidAir(float &Ammo) override;
+	virtual void ShootPrimary() override;
+	virtual void ShootSecondary() override;
 };
