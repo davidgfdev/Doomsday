@@ -15,7 +15,6 @@ class ASCENDENTE_API ANihilist : public AWeaponBase
 	GENERATED_BODY()
 
 public:
-	void RecoverMovement();
 
 	void StartShootPrimary();
 	void StartShootSecondary();
@@ -33,12 +32,9 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectileBase> OrbClass;
 
-	UPROPERTY(EditAnywhere, Category = "Secondary Mode")
-	float RecoverMovementTime = 0.2;
 	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float OrbCooldown = 8;
 
-	float CurrentFireRate;
 	bool bOrbReady = true;
 
 	void SetNextFire();

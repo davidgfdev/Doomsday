@@ -12,7 +12,6 @@ void ANihilist::BeginPlay()
 
 void ANihilist::ShootPrimary()
 {
-    CurrentFireRate = FireRate;
     if (bReadyToFire)
     {
         FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
@@ -22,7 +21,7 @@ void ANihilist::ShootPrimary()
         Projectile->Damage = FireDamage;
         bReadyToFire = false;
         FTimerHandle Handle;
-        GetWorldTimerManager().SetTimer(Handle, this, &ANihilist::SetNextFire, CurrentFireRate, false);
+        GetWorldTimerManager().SetTimer(Handle, this, &ANihilist::SetNextFire, FireRate, false);
     }
 }
 
@@ -46,12 +45,6 @@ void ANihilist::ShootSecondary()
 void ANihilist::SetNextFire()
 {
     bReadyToFire = true;
-}
-
-void ANihilist::RecoverMovement()
-{
-    ASen *Player = Cast<ASen>(UGameplayStatics::GetPlayerCharacter(GetWorld(), 0));
-    Player->SwitchMovementMode(true);
 }
 
 void ANihilist::SetNextOrb()
