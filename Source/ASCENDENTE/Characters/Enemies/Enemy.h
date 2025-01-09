@@ -21,10 +21,17 @@ protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void PlayDeathAnimation();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void PlayAttackAnimation();
+
 public:
 	void MarkForAbsolution();
 	void ReactToHit();
 	virtual void Attack();
+	virtual void HandleDeath();
 
 	bool bIsMarkedForAbsolution = false;
 
@@ -39,17 +46,23 @@ private:
 	void LookAtPlayer();
 
 protected:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components")
-	class UPaperSpriteComponent *EnemySprite;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UPaperFlipbookComponent* EnemySpriteFlipbook;
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateBlackboardAggro();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateIsDead();
 
 	UPROPERTY(EditAnywhere, Category = "Aggro")
 	float AggroRange = 800;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Aggro")
 	bool doesPlayerHasAggro = false;
+
+	UPROPERTY(BlueprintReadOnly, Category = "Lifetime")
+	bool isDead = false;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Effects")
 	float HitColorDuration = 0.4f;

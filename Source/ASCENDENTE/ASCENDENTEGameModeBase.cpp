@@ -26,7 +26,7 @@ void AASCENDENTEGameModeBase::ActorDied(AActor *DeadActor)
     {
         ASen *Sen = Cast<ASen>(UGameplayStatics::GetPlayerPawn(GetWorld(), 0));
         Sen->AddAscensionKills();
-        DeadActor->Destroy();
+        Cast<AEnemy>(DeadActor)->HandleDeath();
     }
 }
 

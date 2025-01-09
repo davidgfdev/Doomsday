@@ -223,10 +223,6 @@ void ASen::SecondaryFire(float Value)
 		}
 
 	}
-	else if (Value == 0 && Weapon->GetChildActor()->IsA(ANihilist::StaticClass())) // SOLO PARA NIHILIST
-	{
-		Cast<ANihilist>(Weapon->GetChildActor())->RecoverMovement();
-	}
 }
 
 void ASen::HPSecondaryFire()

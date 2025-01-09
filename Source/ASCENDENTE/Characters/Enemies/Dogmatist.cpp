@@ -18,8 +18,12 @@ void ADogmatist::Tick(float DeltaTime)
 
 void ADogmatist::Attack()
 {
-
     Super::Attack();
+}
+
+void ADogmatist::HandleDeath()
+{
+    Super::HandleDeath();
 }
 
 void ADogmatist::CheckPlayerInRange()

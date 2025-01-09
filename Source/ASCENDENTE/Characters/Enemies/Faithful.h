@@ -16,6 +16,7 @@ class ASCENDENTE_API AFaithful : public AEnemy
 
 public:
 	virtual void Attack() override;
+	virtual void HandleDeath() override;
 
 protected:
 	virtual void BeginPlay() override;

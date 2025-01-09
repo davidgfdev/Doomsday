@@ -7,11 +7,12 @@
 #include "Components/CapsuleComponent.h"
 #include "../Source\ASCENDENTE\Components\HealthComponent.h"
 #include "Kismet/KismetMathLibrary.h"
+#include "PaperFlipbookComponent.h"
 
 AEnemy::AEnemy()
 {
-    EnemySprite = CreateDefaultSubobject<UPaperSpriteComponent>(TEXT("Enemy Sprite"));
-    EnemySprite->SetupAttachment(RootComponent);
+    EnemySpriteFlipbook = CreateDefaultSubobject<UPaperFlipbookComponent>(TEXT("Enemy Sprite"));
+    EnemySpriteFlipbook->SetupAttachment(RootComponent);
 
     ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile SpawnPoint"));
 	ProjectileSpawnPoint->SetupAttachment(RootComponent);
@@ -60,14 +61,14 @@ void AEnemy::CheckPlayerDistance()
 
 void AEnemy::ReactToHit()
 {
-    EnemySprite->SetSpriteColor(FColor::FromHex("FF0000FF"));
+    EnemySpriteFlipbook->SetSpriteColor(FColor::FromHex("FF0000FF"));
     FTimerHandle ColorHandler;
     GetWorldTimerManager().SetTimer(ColorHandler, this, &AEnemy::ReturnSpriteToNormal, HitColorDuration, false);
 }
 
 void AEnemy::ReturnSpriteToNormal()
 {
-    EnemySprite->SetSpriteColor(FColor::FromHex("FFFFFFFF"));
+    EnemySpriteFlipbook->SetSpriteColor(FColor::FromHex("FFFFFFFF"));
 }
 
 void AEnemy::LookAtPlayer()
@@ -80,4 +81,14 @@ void AEnemy::LookAtPlayer()
     SetActorRotation(FQuat::MakeFromRotator(LookAtRotation));
 }
 
-void AEnemy::Attack() {}
+void AEnemy::Attack() 
+{
+    PlayAttackAnimation();
+}
+
+void AEnemy::HandleDeath()
+{
+    PlayDeathAnimation();
+    isDead = true;
+    UpdateIsDead();
+}
