@@ -2,6 +2,7 @@
 
 #include "Dogmatist.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "..\Source\ASCENDENTE\Projectiles\ProjectileBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "..\Source\ASCENDENTE\Characters\Sen\Sen.h"
@@ -22,6 +23,12 @@ void ADogmatist::Tick(float DeltaTime)
 void ADogmatist::Attack()
 {
     Super::Attack();
+
+    FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
+    FRotator SpawnRotator = ProjectileSpawnPoint->GetComponentRotation();
+    auto Projectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, SpawnLocation, SpawnRotator);
+    Projectile->SetOwner(this);
+    Projectile->Damage = Damage;
 }
 
 void ADogmatist::HandleDeath()

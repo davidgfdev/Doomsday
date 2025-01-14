@@ -37,6 +37,9 @@ protected:
 	UPROPERTY(EditAnywhere, Category = "Collision")
 	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Combat")
+	TSubclassOf<class AProjectileBase> ProjectileClass;
+
 private:
 	void CheckLineOfFire();
 };
