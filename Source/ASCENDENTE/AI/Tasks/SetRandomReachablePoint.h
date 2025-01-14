@@ -20,4 +20,7 @@ public:
 private:
 	UPROPERTY(EditAnywhere, Category = "Distance")
 	float Range = 1500;
+
+	UPROPERTY(EditAnywhere, Category = "Distance")
+	bool isPlayerCenter = false;
 };

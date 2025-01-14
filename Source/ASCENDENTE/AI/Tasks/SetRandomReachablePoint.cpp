@@ -6,6 +6,8 @@
 #include "BehaviorTree/BTFunctionLibrary.h"
 #include "Blueprint/AIBlueprintHelperLibrary.h"
 #include "BehaviorTree/BlackboardComponent.h"
+#include <ASCENDENTE/Characters/Sen/Sen.h>
+#include <ASCENDENTE/Characters/Enemies/Enemy.h>
 
 EBTNodeResult::Type USetRandomReachablePoint::ExecuteTask(UBehaviorTreeComponent &OwnerComp, uint8 *NodeMemory)
 {
@@ -18,9 +20,20 @@ EBTNodeResult::Type USetRandomReachablePoint::ExecuteTask(UBehaviorTreeComponent
     if (Owner)
     {
         FVector ActorLocation = Owner->GetActorLocation();
+        FVector Center = ActorLocation;
+
+        if (isPlayerCenter)
+        {
+            ASen* SenReference = Cast<AEnemy>(Owner)->GetSenReference();
+            if (SenReference)
+            {
+                FVector SenLocation = Cast<AEnemy>(Owner)->GetSenReference()->GetActorLocation();
+                Center = SenLocation;
+            }
+        }
 
         UNavigationSystemV1 *NavSys = FNavigationSystem::GetCurrent<UNavigationSystemV1>(GetWorld());
-        NavSys->GetRandomReachablePointInRadius(ActorLocation, Range, ReachableLocation);
+        NavSys->GetRandomReachablePointInRadius(Center, Range, ReachableLocation);
 
         UAIBlueprintHelperLibrary::GetBlackboard(Owner)->SetValueAsVector(GetSelectedBlackboardKey(), ReachableLocation.Location);
 
