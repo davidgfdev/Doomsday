@@ -19,6 +19,11 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+	virtual void ApplyHitEffects(FHitResult Hit);
+
+	UPROPERTY(VisibleAnywhere, Category = "Movement")
+	class UProjectileMovementComponent* ProjectileMovement;
+
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
@@ -26,12 +31,10 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Mesh")
 	UStaticMeshComponent *ProjectileMesh;
 
-private:
-	UPROPERTY(VisibleAnywhere, Category = "Movement")
-	class UProjectileMovementComponent *ProjectileMovement;
-
 	UPROPERTY(EditAnywhere)
 	float Damage = 50.f;
+
+private:
 
 	UPROPERTY(EditAnywhere)
 	bool bItDestroysOnTouch = true;

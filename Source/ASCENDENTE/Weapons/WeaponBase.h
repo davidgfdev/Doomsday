@@ -23,19 +23,35 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	virtual void ShootPrimary();
-	virtual void ShootSecondary();
-	virtual void ShootMidAir();
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartShootPrimary();
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartShootSecondary();
+
+	UPROPERTY(EditAnywhere, Category = "Ammo")
+	float PrimaryAmmoCost;
+	UPROPERTY(EditAnywhere, Category = "Ammo")
+	float SecondaryAmmoCost;
+
+	bool bReadyToFire = true;
 
 protected:
+	UFUNCTION(BlueprintCallable)
+	virtual void ShootPrimary();
+	UFUNCTION(BlueprintCallable)
+	virtual void ShootSecondary();
+
 	UPROPERTY(EditAnywhere, Category = "Damage")
 	float FireDamage;
 	UPROPERTY(EditAnywhere, Category = "Cooldown")
 	float FireRate;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
-	class UStaticMeshComponent *WeaponMesh;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	class UPaperFlipbookComponent *WeaponFlipbook;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
 	USceneComponent *ProjectileSpawnPoint;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
+	USceneComponent *SceneRoot;
 };

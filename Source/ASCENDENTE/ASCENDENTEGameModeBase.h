@@ -7,11 +7,25 @@
 #include "ASCENDENTEGameModeBase.generated.h"
 
 /**
- * 
+ *
  */
 UCLASS()
 class ASCENDENTE_API AASCENDENTEGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
+
+public:
+	void ActorDied(AActor *DeadActor);
+
+protected:
+	virtual void BeginPlay();
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void StartGame();
+
+private:
+	void MarkEnemies();
+
+	UPROPERTY(EditAnywhere, Category = "Absolution")
+	int MarkingSeconds = 45;
 };
