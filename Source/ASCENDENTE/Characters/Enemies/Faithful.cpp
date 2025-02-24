@@ -31,9 +31,12 @@ void AFaithful::Attack()
 
 void AFaithful::CheckPlayerInRange()
 {
-    FVector SenLocation = SenReference->GetActorLocation();
-    float Distance = FVector::Distance(SenLocation, GetActorLocation());
-    isPlayerInRange = (Distance < AttackRange);
+    if (SenReference) 
+    {
+        FVector SenLocation = SenReference->GetActorLocation();
+        float Distance = FVector::Distance(SenLocation, GetActorLocation());
+        isPlayerInRange = (Distance < AttackRange);
+    }
 }
 
 void AFaithful::HandleDeath() 

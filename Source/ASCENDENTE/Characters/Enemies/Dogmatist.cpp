@@ -38,15 +38,18 @@ void ADogmatist::HandleDeath()
 
 void ADogmatist::CheckLineOfFire()
 {
-    FVector TraceEnd = SenReference->GetActorLocation();
-    FVector TraceStart = GetActorLocation();
+    if (SenReference)
+    {
+        FVector TraceEnd = SenReference->GetActorLocation();
+        FVector TraceStart = GetActorLocation();
 
-    FCollisionQueryParams QueryParams;
-    QueryParams.AddIgnoredActor(this);
+        FCollisionQueryParams QueryParams;
+        QueryParams.AddIgnoredActor(this);
 
-    FHitResult Hit;
+        FHitResult Hit;
 
-    GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
+        GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
 
-    isPlayerInLineOfFire = (Hit.bBlockingHit && IsValid(Hit.GetActor()));
+        isPlayerInLineOfFire = (Hit.bBlockingHit && IsValid(Hit.GetActor()));
+    }
 }

@@ -54,9 +54,12 @@ void AEnemy::DisableAbsolution()
 
 void AEnemy::CheckPlayerDistance()
 {
-    FVector SenLocation = SenReference->GetActorLocation();
-    float Distance = FVector::Distance(SenLocation, GetActorLocation());
-    doesPlayerHasAggro = (Distance < AggroRange);
+    if (SenReference)
+    {
+        FVector SenLocation = SenReference->GetActorLocation();
+        float Distance = FVector::Distance(SenLocation, GetActorLocation());
+        doesPlayerHasAggro = (Distance < AggroRange);
+    }
 }
 
 void AEnemy::ReactToHit()
@@ -73,12 +76,15 @@ void AEnemy::ReturnSpriteToNormal()
 
 void AEnemy::LookAtPlayer()
 {
-    FVector PlayerLocation = UGameplayStatics::GetPlayerPawn(GetWorld(), 0)->GetActorLocation();
-    FVector EnemyLocation = GetActorLocation();
+    if (SenReference)
+    {
+        FVector PlayerLocation = SenReference->GetActorLocation();
+        FVector EnemyLocation = GetActorLocation();
 
-    FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(EnemyLocation, PlayerLocation);
+        FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(EnemyLocation, PlayerLocation);
 
-    SetActorRotation(FQuat::MakeFromRotator(LookAtRotation));
+        SetActorRotation(FQuat::MakeFromRotator(LookAtRotation));
+    }
 }
 
 void AEnemy::Attack() 
