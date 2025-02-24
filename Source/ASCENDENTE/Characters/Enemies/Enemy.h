@@ -55,7 +55,7 @@ protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateIsDead();
 
-	UPROPERTY(EditAnywhere, Category = "Aggro")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Aggro")
 	float AggroRange = 800;
 
 	UPROPERTY(BlueprintReadOnly, Category = "Aggro")

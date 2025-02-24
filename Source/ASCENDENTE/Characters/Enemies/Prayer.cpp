@@ -29,8 +29,11 @@ void APrayer::Attack()
 
 void APrayer::CheckPlayerInRange()
 {
-    FVector SenLocation = SenReference->GetActorLocation();
-    float Distance = FVector::Distance(SenLocation, GetActorLocation());
+    if (SenReference)
+    {
+        FVector SenLocation = SenReference->GetActorLocation();
+        float Distance = FVector::Distance(SenLocation, GetActorLocation());
+    }
 }
 
 void APrayer::HandleDeath()
