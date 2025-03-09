@@ -40,16 +40,18 @@ void ADogmatist::CheckLineOfFire()
 {
     if (SenReference)
     {
+        bool isNotBlocking = false;
         FVector TraceEnd = SenReference->GetActorLocation();
         FVector TraceStart = GetActorLocation();
 
         FCollisionQueryParams QueryParams;
         QueryParams.AddIgnoredActor(this);
+        QueryParams.AddIgnoredActor(SenReference);
 
         FHitResult Hit;
 
         GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
 
-        isPlayerInLineOfFire = (Hit.bBlockingHit && IsValid(Hit.GetActor()));
+        isPlayerInLineOfFire = !Hit.bBlockingHit;
     }
 }

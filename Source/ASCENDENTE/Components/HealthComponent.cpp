@@ -5,6 +5,7 @@
 #include "Kismet/GameplayStatics.h"
 #include "../Source\ASCENDENTE\Characters\BasicCharacter.h"
 #include "../Source\ASCENDENTE\Characters\Enemies\Enemy.h"
+#include "../Source\ASCENDENTE\Characters\Sen\Sen.h"
 
 // Sets default values for this component's properties
 UHealthComponent::UHealthComponent()
@@ -31,7 +32,10 @@ void UHealthComponent::BeginPlay()
 	Health = MaxHealth;
 
 	ASCENDENTEGameModeBase = Cast<AASCENDENTEGameModeBase>(UGameplayStatics::GetGameMode(this));
-	Cast<ABasicCharacter>(Owner)->UpdateHealth(Health);
+	if (Owner->IsA(ASen::StaticClass()))
+	{
+		Cast<ASen>(Owner)->UpdateHealth(Health);
+	}
 }
 
 // Called every frame
@@ -46,7 +50,11 @@ void UHealthComponent::DamageTaken(AActor *DamagedActor, float Damage, const UDa
 		return;
 
 	Health -= Damage;
-	Cast<ABasicCharacter>(GetOwner())->UpdateHealth(Health);
+	if (GetOwner()->IsA(ASen::StaticClass())) 
+	{
+		Cast<ASen>(GetOwner())->UpdateHealth(Health);
+	}
+	
 
 	if (GetOwner()->IsA(AEnemy::StaticClass())){
 		Cast<AEnemy>(GetOwner())->ReactToHit();

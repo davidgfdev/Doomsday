@@ -35,7 +35,7 @@ protected:
 	bool isPlayerInLineOfFire = false;
 
 	UPROPERTY(EditAnywhere, Category = "Collision")
-	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
+	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_WorldStatic;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	TSubclassOf<class AProjectileBase> ProjectileClass;

@@ -133,4 +133,7 @@ private:
 
 public:
 	void SwitchMovementMode(bool bIsMoving);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void UpdateHealth(float Health);
 };

@@ -26,7 +26,6 @@ void AEnemy::BeginPlay()
     SenReference = Cast<ASen>(PlayerRef);
 
     UHealthComponent *HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
-    UpdateHealth(HealthComponent->GetHealth());
 }
 
 void AEnemy::Tick(float DeltaTime)
