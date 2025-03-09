@@ -125,6 +125,7 @@ private:
 	void DisableAscension();
 	void AscendanceEnd();
 	void HeadBob();
+	void Respawn();
 
 	APlayerController *SenPlayerController;
 

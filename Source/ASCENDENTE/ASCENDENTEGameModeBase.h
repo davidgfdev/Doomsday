@@ -17,8 +17,13 @@ class ASCENDENTE_API AASCENDENTEGameModeBase : public AGameModeBase
 public:
 	void ActorDied(AActor *DeadActor);
 
+	FVector RespawnLocation = FVector(0,0,0);
+
 protected:
 	virtual void BeginPlay();
+
+	UFUNCTION(BlueprintCallable)
+	void SetRespawnLocation(FVector NewRespawnLocation) { RespawnLocation = NewRespawnLocation; }
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();

@@ -13,6 +13,7 @@
 #include "..\Source\ASCENDENTE\Weapons\HopeAndPrison.h"
 #include "..\Source\ASCENDENTE\Characters\Enemies\Enemy.h"
 #include "..\Source\ASCENDENTE\Components\HealthComponent.h"
+#include "..\Source\ASCENDENTE\ASCENDENTEGameModeBase.h"
 
 ASen::ASen()
 {
@@ -319,7 +320,27 @@ void ASen::HandleDeath()
 	}
 	else
 	{
-		Destroy();
+		Respawn();
+	}
+}
+
+void ASen::Respawn() 
+{
+	UE_LOG(LogTemp, Display, TEXT("Respawning..."));
+	UHealthComponent* HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
+	HealthComponent->Heal(100);
+
+	if (UGameplayStatics::GetGameMode(GetWorld())->IsA(AASCENDENTEGameModeBase::StaticClass()))
+	{
+		UE_LOG(LogTemp, Display, TEXT("GameMode is ok..."));
+		
+		AASCENDENTEGameModeBase* GameMode = Cast<AASCENDENTEGameModeBase>(UGameplayStatics::GetGameMode(GetWorld()));
+		UE_LOG(LogTemp, Display, TEXT("RespawnLocation is %s"), *GameMode->RespawnLocation.ToString());
+		if (!GameMode->RespawnLocation.IsZero())
+		{
+			UE_LOG(LogTemp, Display, TEXT("Setting actor location..."));
+			SetActorLocation(GameMode->RespawnLocation);
+		}
 	}
 }
 
@@ -352,6 +373,7 @@ void ASen::AscendanceEnd()
 	if (bIsAscending)
 	{
 		bIsAscending = false;
+		bCanAscend = false;
 		UpdateAscendPanel(false);
 		HandleDeath();
 	}
