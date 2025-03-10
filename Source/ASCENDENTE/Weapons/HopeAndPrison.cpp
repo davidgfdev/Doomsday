@@ -11,15 +11,8 @@
 #include "TimerManager.h"
 #include <ASCENDENTE/Projectiles/ProjectileBase.h>
 
-AHopeAndPrison::AHopeAndPrison()
-{
-    ShotgunSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Shotgun SpawnPoint"));
-    ShotgunSpawnPoint->SetupAttachment(WeaponFlipbook);
-}
-
 void AHopeAndPrison::ShootPrimary()
 {
-    CurrentFireRate = FireRate;
     if (bReadyToFire)
     {
         FHitResult Hit;
@@ -50,7 +43,7 @@ void AHopeAndPrison::ShootPrimary()
 
         bReadyToFire = false;
         FTimerHandle Handle;
-        GetWorldTimerManager().SetTimer(Handle, this, &AHopeAndPrison::SetNextFire, CurrentFireRate, false);
+        GetWorldTimerManager().SetTimer(Handle, this, &AHopeAndPrison::SetNextFire, FireRate, false);
 
         UE_LOG(LogTemp, Display, TEXT("Hope & Prison: Primary"));
     }
@@ -59,9 +52,4 @@ void AHopeAndPrison::ShootPrimary()
 void AHopeAndPrison::SetNextFire()
 {
     bReadyToFire = true;
-}
-
-void AHopeAndPrison::SetNextExpansive()
-{
-    bExpansiveReady = true;
 }

@@ -24,17 +24,8 @@ protected:
 	virtual void ShootPrimary() override;
 
 private:
-	UPROPERTY(EditDefaultsOnly, Category = "Combat")
-	TSubclassOf<class AProjectileBase> ProjectileClass;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Combat")
-	TSubclassOf<class AProjectileBase> OrbClass;
-
-	UPROPERTY(EditAnywhere, Category = "Cooldown")
-	float OrbCooldown = 8;
-
-	bool bOrbReady = true;
-
 	void SetNextFire();
-	void SetNextOrb();
+
+	UPROPERTY(EditAnywhere, Category = "Collision")
+	TEnumAsByte<ECollisionChannel> TraceChannelProperty = ECC_Pawn;
 };
