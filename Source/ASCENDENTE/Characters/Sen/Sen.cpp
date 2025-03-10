@@ -65,6 +65,8 @@ void ASen::BeginPlay()
 
 	CurrentAmmo = MaxAmmo;
 	UpdateAmmo(CurrentAmmo);
+
+	CurrentSpeed = StandardSpeed;
 }
 
 void ASen::Tick(float DeltaTime)
@@ -94,6 +96,8 @@ void ASen::Tick(float DeltaTime)
 	{
 		HeadBob();
 	}
+
+	GetCharacterMovement()->MaxWalkSpeed = CurrentSpeed;
 }
 
 void ASen::Aim(float Value)
@@ -184,11 +188,16 @@ void ASen::PrimaryFire(float Value)
 			AWeaponBase* CurrentWeapon = Cast<AWeaponBase>(Weapon->GetChildActor());
 			if (!CurrentWeapon->IsA(AHopeAndPrison::StaticClass()) && CurrentAmmo >= CurrentWeapon->PrimaryAmmoCost && CurrentWeapon->bReadyToFire)
 			{
+				CurrentSpeed = NihilistSpeed;
 				CurrentWeapon->StartShootPrimary();
 				CurrentAmmo -= CurrentWeapon->PrimaryAmmoCost;
 				UpdateAmmo(CurrentAmmo);
 			}
 		}
+	}
+	else
+	{
+		CurrentSpeed = StandardSpeed;
 	}
 }
 

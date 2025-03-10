@@ -86,6 +86,10 @@ private:
 	float AscensionHealth = 70;
 	UPROPERTY(EditAnywhere, Category = "Headbob")
 	float HeadbobFactor = 1;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float StandardSpeed = 1000;
+	UPROPERTY(EditAnywhere, Category = "Movement")
+	float NihilistSpeed = 500;
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	TArray<TSubclassOf<class AWeaponBase>> Weapons;
@@ -105,6 +109,7 @@ private:
 	bool bCanAscend = true;
 	bool bIsAscending = false;
 	int AscensionKills = 0;
+	float CurrentSpeed;
 
 	void Aim(float Value);
 	void Turn(float Value);
