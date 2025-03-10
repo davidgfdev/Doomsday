@@ -17,13 +17,11 @@ class ASCENDENTE_API ANihilist : public AWeaponBase
 public:
 
 	void StartShootPrimary();
-	void StartShootSecondary();
 
 protected:
 	virtual void BeginPlay() override;
 
 	virtual void ShootPrimary() override;
-	virtual void ShootSecondary() override;
 
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")

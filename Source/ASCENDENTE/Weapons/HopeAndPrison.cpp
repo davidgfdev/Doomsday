@@ -56,24 +56,6 @@ void AHopeAndPrison::ShootPrimary()
     }
 }
 
-void AHopeAndPrison::ShootSecondary()
-{
-    UE_LOG(LogTemp, Display, TEXT("Hope & Prison: StartShootMidAir"));
-    if (bExpansiveReady)
-    {
-        bExpansiveReady = false;
-
-        FVector SpawnLocation = ShotgunSpawnPoint->GetComponentLocation();
-        FRotator SpawnRotator = ShotgunSpawnPoint->GetComponentRotation();
-        auto Projectile = GetWorld()->SpawnActor<AProjectileBase>(ProjectileClass, SpawnLocation, SpawnRotator);
-        Projectile->SetOwner(this);
-        Projectile->Damage = FireDamage;
-
-        FTimerHandle HandleExpansiveCooldown;
-        GetWorldTimerManager().SetTimer(HandleExpansiveCooldown, this, &AHopeAndPrison::SetNextExpansive, ExpansiveCooldown, false);
-    }
-}
-
 void AHopeAndPrison::SetNextFire()
 {
     bReadyToFire = true;

@@ -34,6 +34,3 @@ void AWeaponBase::Tick(float DeltaTime)
 void AWeaponBase::ShootPrimary()
 {
 }
-void AWeaponBase::ShootSecondary()
-{
-}

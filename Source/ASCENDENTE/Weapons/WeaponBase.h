@@ -25,21 +25,15 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartShootPrimary();
-	UFUNCTION(BlueprintImplementableEvent)
-	void StartShootSecondary();
 
 	UPROPERTY(EditAnywhere, Category = "Ammo")
 	float PrimaryAmmoCost;
-	UPROPERTY(EditAnywhere, Category = "Ammo")
-	float SecondaryAmmoCost;
 
 	bool bReadyToFire = true;
 
 protected:
 	UFUNCTION(BlueprintCallable)
 	virtual void ShootPrimary();
-	UFUNCTION(BlueprintCallable)
-	virtual void ShootSecondary();
 
 	UPROPERTY(EditAnywhere, Category = "Damage")
 	float FireDamage;

@@ -25,23 +25,6 @@ void ANihilist::ShootPrimary()
     }
 }
 
-void ANihilist::ShootSecondary()
-{
-    if (bOrbReady)
-    {
-        bOrbReady = false;
-
-        FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
-        FRotator SpawnRotator = ProjectileSpawnPoint->GetComponentRotation();
-        auto Projectile = GetWorld()->SpawnActor<AProjectileBase>(OrbClass, SpawnLocation, SpawnRotator);
-        Projectile->SetOwner(this);
-        Projectile->Damage = FireDamage;
-
-        FTimerHandle HandleOrbCooldown;
-        GetWorldTimerManager().SetTimer(HandleOrbCooldown, this, &ANihilist::SetNextOrb, OrbCooldown, false);
-    }
-}
-
 void ANihilist::SetNextFire()
 {
     bReadyToFire = true;

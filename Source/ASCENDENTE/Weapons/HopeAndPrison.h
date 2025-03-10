@@ -18,7 +18,6 @@ public:
 	AHopeAndPrison();
 
 	void StartShootPrimary();
-	void StartShootSecondary();
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))
@@ -52,5 +51,4 @@ private:
 
 protected:
 	virtual void ShootPrimary() override;
-	virtual void ShootSecondary() override;
 };

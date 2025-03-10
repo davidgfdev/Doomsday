@@ -46,8 +46,6 @@ void ASen::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAction(TEXT("Dash"), IE_Pressed, this, &ASen::Dash);
 	PlayerInputComponent->BindAxis(TEXT("PrimaryFire"), this, &ASen::PrimaryFire);
 	PlayerInputComponent->BindAction(TEXT("HPPrimaryFire"), IE_Pressed, this, &ASen::HPPrimaryFire);
-	PlayerInputComponent->BindAction(TEXT("HPSecondaryFire"), IE_Pressed, this, &ASen::HPSecondaryFire);
-	PlayerInputComponent->BindAxis(TEXT("SecondaryFire"), this, &ASen::SecondaryFire);
 	PlayerInputComponent->BindAction(TEXT("ChangeWeapon"), IE_Pressed, this, &ASen::ChangeWeapon);
 	PlayerInputComponent->BindAction(TEXT("Absolution"), IE_Pressed, this, &ASen::Absolution);
 }
@@ -203,38 +201,6 @@ void ASen::HPPrimaryFire()
 		{
 			CurrentWeapon->StartShootPrimary();
 			CurrentAmmo -= CurrentWeapon->PrimaryAmmoCost;
-			UpdateAmmo(CurrentAmmo);
-		}
-	}
-}
-
-void ASen::SecondaryFire(float Value)
-{
-	if (Value == 1)
-	{
-		if (Weapon)
-		{
-			AWeaponBase* CurrentWeapon = Cast<AWeaponBase>(Weapon->GetChildActor());
-			if (!CurrentWeapon->IsA(AHopeAndPrison::StaticClass()) && CurrentAmmo >= CurrentWeapon->SecondaryAmmoCost && CurrentWeapon->bReadyToFire)
-			{
-				CurrentWeapon->StartShootSecondary();
-				CurrentAmmo -= CurrentWeapon->SecondaryAmmoCost;
-				UpdateAmmo(CurrentAmmo);
-			}
-		}
-
-	}
-}
-
-void ASen::HPSecondaryFire()
-{
-	if (Weapon)
-	{
-		AWeaponBase* CurrentWeapon = Cast<AWeaponBase>(Weapon->GetChildActor());
-		if (CurrentWeapon->IsA(AHopeAndPrison::StaticClass()) && CurrentAmmo >= CurrentWeapon->SecondaryAmmoCost && CurrentWeapon->bReadyToFire)
-		{
-			CurrentWeapon->StartShootSecondary();
-			CurrentAmmo -= CurrentWeapon->SecondaryAmmoCost;
 			UpdateAmmo(CurrentAmmo);
 		}
 	}

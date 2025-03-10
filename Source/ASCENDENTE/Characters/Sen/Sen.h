@@ -111,14 +111,12 @@ private:
 	void MoveForward(float Value);
 	void Strafe(float Value);
 	void PrimaryFire(float Value);
-	void SecondaryFire(float Value);
 	void StartJump();
 	void StopJump();
 	void Dash();
 	void DashCooldown();
 	void ChangeWeapon();
 	void HPPrimaryFire();
-	void HPSecondaryFire();
 	void Absolution();
 	void Ascend();
 	void AscensionCooldown();
