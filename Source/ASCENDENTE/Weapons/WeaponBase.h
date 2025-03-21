@@ -26,6 +26,9 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartShootPrimary();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void OnEnemyConnect(FVector EnemyLocation);
+
 	UPROPERTY(EditAnywhere, Category = "Ammo")
 	float PrimaryAmmoCost;
 

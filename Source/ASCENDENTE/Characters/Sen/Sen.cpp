@@ -206,11 +206,9 @@ void ASen::HPPrimaryFire()
 	if (Weapon)
 	{
 		AWeaponBase* CurrentWeapon = Cast<AWeaponBase>(Weapon->GetChildActor());
-		if (CurrentWeapon->IsA(AHopeAndPrison::StaticClass()) && CurrentAmmo >= CurrentWeapon->PrimaryAmmoCost && CurrentWeapon->bReadyToFire)
+		if (CurrentWeapon->IsA(AHopeAndPrison::StaticClass()) && CurrentWeapon->bReadyToFire)
 		{
 			CurrentWeapon->StartShootPrimary();
-			CurrentAmmo -= CurrentWeapon->PrimaryAmmoCost;
-			UpdateAmmo(CurrentAmmo);
 		}
 	}
 }

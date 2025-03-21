@@ -32,6 +32,7 @@ void ANihilist::ShootPrimary()
             QueryParams.AddIgnoredActor(GetOwner());
 
             GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
+            OnEnemyConnect(TraceEnd);
 
             if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
             {

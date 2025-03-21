@@ -31,6 +31,9 @@ public:
 
 	class UCameraComponent *GetCameraComponent() const { return CameraComponent; }
 
+	UFUNCTION(BlueprintCallable)
+	void AddAmmo(float Ammo) { CurrentAmmo += Ammo; UpdateAmmo(CurrentAmmo); }
+
 protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateAmmo(float Ammo);

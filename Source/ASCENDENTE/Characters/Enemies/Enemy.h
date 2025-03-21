@@ -33,6 +33,9 @@ public:
 	virtual void Attack();
 	virtual void HandleDeath();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void DoKnockback();
+
 	bool bIsMarkedForAbsolution = false;
 
 	class ASen *GetSenReference() { return SenReference; }

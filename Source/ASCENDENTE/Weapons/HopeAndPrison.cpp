@@ -4,6 +4,7 @@
 #include "Kismet/KismetSystemLibrary.h"
 #include "Kismet/GameplayStatics.h"
 #include "..\Source\ASCENDENTE\Characters\Sen\Sen.h"
+#include "..\Source\ASCENDENTE\Characters\Enemies\Enemy.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "PaperFlipbookComponent.h"
@@ -31,13 +32,19 @@ void AHopeAndPrison::ShootPrimary()
             QueryParams.AddIgnoredActor(GetOwner());
 
             GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
-
+            
             if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
             {
                 auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
                 auto DamageType = UDamageType::StaticClass();
 
                 UGameplayStatics::ApplyDamage(Hit.GetActor(), FireDamage, MyOwnerInstigator, this, DamageType);
+                OnEnemyConnect(Hit.GetActor()->GetActorLocation());
+
+                if (Hit.GetActor()->IsA(AEnemy::StaticClass())) 
+                {
+                    Cast<AEnemy>(Hit.GetActor())->DoKnockback();
+                }
             }
         }
 
