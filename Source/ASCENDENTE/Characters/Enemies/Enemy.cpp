@@ -81,8 +81,10 @@ void AEnemy::LookAtPlayer()
         FVector EnemyLocation = GetActorLocation();
 
         FRotator LookAtRotation = UKismetMathLibrary::FindLookAtRotation(EnemyLocation, PlayerLocation);
+        FRotator FixedRotator = GetActorRotation();
+        FixedRotator.Yaw = LookAtRotation.Yaw;
 
-        SetActorRotation(FQuat::MakeFromRotator(LookAtRotation));
+        SetActorRotation(FQuat::MakeFromRotator(FixedRotator));
     }
 }
 
