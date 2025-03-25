@@ -27,8 +27,6 @@ public:
 
 	void HandleDeath();
 
-	void AddAscensionKills();
-
 	class UCameraComponent *GetCameraComponent() const { return CameraComponent; }
 
 	UFUNCTION(BlueprintCallable)
@@ -73,20 +71,6 @@ private:
 	float DashCooldownSeconds = 2;
 	UPROPERTY(EditAnywhere, Category = "Ammo")
 	float MaxAmmo = 100;
-	UPROPERTY(EditAnywhere, Category = "Absolution")
-	float AmmoPerAbsolution = 50;
-	UPROPERTY(EditAnywhere, Category = "Absolution")
-	float AbsolutionDamage = 30;
-	UPROPERTY(EditAnywhere, Category = "Ascension")
-	float TimeBetweenAscensions = 150;
-	UPROPERTY(EditAnywhere, Category = "Ascension")
-	float AscensionDuration = 20;
-	UPROPERTY(EditAnywhere, Category = "Ascension")
-	float AscensionExtraDamagePercent = 1.70;
-	UPROPERTY(EditAnywhere, Category = "Ascension")
-	float AscensionBuffDuration = 60;
-	UPROPERTY(EditAnywhere, Category = "Ascension")
-	float AscensionHealth = 70;
 	UPROPERTY(EditAnywhere, Category = "Headbob")
 	float HeadbobFactor = 1;
 	UPROPERTY(EditAnywhere, Category = "Movement")
@@ -111,7 +95,6 @@ private:
 	float CurrentAmmo = 100;
 	bool bCanAscend = true;
 	bool bIsAscending = false;
-	int AscensionKills = 0;
 	float CurrentSpeed;
 
 	void Aim(float Value);
@@ -125,11 +108,6 @@ private:
 	void DashCooldown();
 	void ChangeWeapon();
 	void HPPrimaryFire();
-	void Absolution();
-	void Ascend();
-	void AscensionCooldown();
-	void DisableAscension();
-	void AscendanceEnd();
 	void HeadBob();
 	void Respawn();
 

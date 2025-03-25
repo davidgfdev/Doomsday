@@ -27,10 +27,4 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void StartGame();
-
-private:
-	void MarkEnemies();
-
-	UPROPERTY(EditAnywhere, Category = "Absolution")
-	int MarkingSeconds = 45;
 };

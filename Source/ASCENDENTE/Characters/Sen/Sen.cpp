@@ -47,7 +47,6 @@ void ASen::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("PrimaryFire"), this, &ASen::PrimaryFire);
 	PlayerInputComponent->BindAction(TEXT("HPPrimaryFire"), IE_Pressed, this, &ASen::HPPrimaryFire);
 	PlayerInputComponent->BindAction(TEXT("ChangeWeapon"), IE_Pressed, this, &ASen::ChangeWeapon);
-	PlayerInputComponent->BindAction(TEXT("Absolution"), IE_Pressed, this, &ASen::Absolution);
 }
 
 void ASen::BeginPlay()
@@ -244,57 +243,9 @@ void ASen::SwitchMovementMode(bool bIsMoving)
 	}
 }
 
-void ASen::Absolution()
-{
-	FHitResult Hit;
-
-	FVector TraceEnd = GetActorLocation() + (UKismetMathLibrary::GetForwardVector(GetActorRotation()) * 5000);
-
-	FCollisionQueryParams QueryParams;
-	QueryParams.AddIgnoredActor(this);
-
-	GetWorld()->LineTraceSingleByChannel(Hit, GetActorLocation(), TraceEnd, TraceChannelProperty, QueryParams);
-	DrawDebugLine(GetWorld(), GetActorLocation(), TraceEnd, FColor::Yellow, false, 3, 0, 1.5f);
-
-	if (Hit.bBlockingHit && IsValid(Hit.GetActor()) && Hit.GetActor()->IsA(AEnemy::StaticClass()) && Cast<AEnemy>(Hit.GetActor())->bIsMarkedForAbsolution)
-	{
-		CurrentAmmo += AmmoPerAbsolution;
-
-		if (CurrentAmmo > MaxAmmo)
-		{
-			CurrentAmmo = MaxAmmo;
-		}
-
-		UpdateAmmo(CurrentAmmo);
-
-		auto MyOwnerInstigator = GetInstigatorController();
-		auto DamageType = UDamageType::StaticClass();
-
-		UGameplayStatics::ApplyDamage(Hit.GetActor(), AbsolutionDamage, MyOwnerInstigator, this, DamageType);
-		if (Hit.GetActor())
-		{
-			Cast<AEnemy>(Hit.GetActor())->bIsMarkedForAbsolution = false;
-		}
-	}
-}
-
 void ASen::HandleDeath()
 {
-	if (bCanAscend)
-	{
-		UE_LOG(LogTemp, Display, TEXT("Iniciando Ascenso"));
-		bCanAscend = false;
-		bIsAscending = true;
-		UpdateAscendPanel(true);
-		AscensionKills = 0;
-
-		FTimerHandle AscensionHandler;
-		GetWorldTimerManager().SetTimer(AscensionHandler, this, &ASen::AscendanceEnd, AscensionDuration, false);
-	}
-	else
-	{
-		Respawn();
-	}
+	Respawn();
 }
 
 void ASen::Respawn() 
@@ -302,6 +253,7 @@ void ASen::Respawn()
 	UE_LOG(LogTemp, Display, TEXT("Respawning..."));
 	UHealthComponent* HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
 	HealthComponent->Heal(100);
+	UpdateHealth(HealthComponent->GetHealth());
 
 	if (UGameplayStatics::GetGameMode(GetWorld())->IsA(AASCENDENTEGameModeBase::StaticClass()))
 	{
@@ -314,50 +266,6 @@ void ASen::Respawn()
 			UE_LOG(LogTemp, Display, TEXT("Setting actor location..."));
 			SetActorLocation(GameMode->RespawnLocation);
 		}
-	}
-}
-
-void ASen::DisableAscension()
-{
-	UpdateAscendPanel(false);
-}
-
-void ASen::Ascend()
-{
-	UpdateAscendPanel(false);
-	UE_LOG(LogTemp, Display, TEXT("ASCENDIDO"));
-
-	UHealthComponent* HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
-	HealthComponent->Heal(75);
-	UpdateHealth(HealthComponent->GetHealth());
-
-	bIsAscending = false;
-	FTimerHandle AscensionHandler;
-	GetWorldTimerManager().SetTimer(AscensionHandler, this, &ASen::AscensionCooldown, TimeBetweenAscensions, false);
-}
-
-void ASen::AscensionCooldown()
-{
-	bCanAscend = true;
-}
-
-void ASen::AscendanceEnd()
-{
-	if (bIsAscending)
-	{
-		bIsAscending = false;
-		bCanAscend = false;
-		UpdateAscendPanel(false);
-		HandleDeath();
-	}
-}
-
-void ASen::AddAscensionKills()
-{
-	AscensionKills++;
-	if (AscensionKills >= 3)
-	{
-		Ascend();
 	}
 }
 
