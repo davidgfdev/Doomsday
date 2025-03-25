@@ -16,6 +16,7 @@ class ASCENDENTE_API ATree : public AEnemy
 
 protected:
 	virtual void HandleDeath() override;
+	virtual void LookAtPlayer() override;
 	
 	UFUNCTION(BlueprintImplementableEvent)
 	void EndGame();

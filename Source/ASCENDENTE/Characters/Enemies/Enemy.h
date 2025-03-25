@@ -20,6 +20,7 @@ public:
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
+	virtual void LookAtPlayer();
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void PlayDeathAnimation();
@@ -46,7 +47,6 @@ private:
 
 	void DisableAbsolution();
 	void ReturnSpriteToNormal();
-	void LookAtPlayer();
 
 protected:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Components", meta = (AllowPrivateAccess = "true"))
