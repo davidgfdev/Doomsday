@@ -33,8 +33,6 @@ void ADownfallKnockbackProjectile::Explode()
 		ActorsToIgnore,
 		EnemiesInRange);
 
-	DrawDebugSphere(GetWorld(), GetActorLocation(), ExpansiveRadius, 12, FColor::Red, false, 2.f);
-
 	for (int i = 0; i < EnemiesInRange.Num(); i++)
 	{
 		ACharacter* Enemy = Cast<ACharacter>(EnemiesInRange[i]);

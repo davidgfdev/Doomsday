@@ -251,9 +251,6 @@ void ASen::HandleDeath()
 void ASen::Respawn() 
 {
 	UE_LOG(LogTemp, Display, TEXT("Respawning..."));
-	UHealthComponent* HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
-	HealthComponent->Heal(100);
-	UpdateHealth(HealthComponent->GetHealth());
 
 	if (UGameplayStatics::GetGameMode(GetWorld())->IsA(AASCENDENTEGameModeBase::StaticClass()))
 	{
@@ -263,8 +260,12 @@ void ASen::Respawn()
 		UE_LOG(LogTemp, Display, TEXT("RespawnLocation is %s"), *GameMode->RespawnLocation.ToString());
 		if (!GameMode->RespawnLocation.IsZero())
 		{
+			MakeDeathEffect();
 			UE_LOG(LogTemp, Display, TEXT("Setting actor location..."));
 			SetActorLocation(GameMode->RespawnLocation);
+			UHealthComponent* HealthComponent = Cast<UHealthComponent>(GetComponentByClass(UHealthComponent::StaticClass()));
+			HealthComponent->Heal(100);
+			UpdateHealth(HealthComponent->GetHealth());
 		}
 	}
 }

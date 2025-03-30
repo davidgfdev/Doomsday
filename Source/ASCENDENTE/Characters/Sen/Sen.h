@@ -32,6 +32,11 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void AddAmmo(float Ammo) { CurrentAmmo += Ammo; UpdateAmmo(CurrentAmmo); }
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void MakeDamageEffect();
+
+	
+
 protected:
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateAmmo(float Ammo);
@@ -41,6 +46,9 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void UpdateCrosshairSize(float Speed);
+
+	UFUNCTION(BlueprintImplementableEvent)
+	void MakeDeathEffect();
 
 private:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Components", meta = (AllowPrivateAccess = "true"))

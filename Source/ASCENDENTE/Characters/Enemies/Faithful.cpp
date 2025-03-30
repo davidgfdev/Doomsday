@@ -24,7 +24,6 @@ void AFaithful::Attack()
     IgnoreActors.Add(this);
     auto DamageType = UDamageType::StaticClass();
     UGameplayStatics::ApplyRadialDamage(GetWorld(), Damage, ProjectileSpawnPoint->GetComponentLocation(), AttackRadius, DamageType, IgnoreActors, this);
-    DrawDebugSphere(GetWorld(), ProjectileSpawnPoint->GetComponentLocation(), AttackRadius, 12, FColor::Red, false, 2);
 
     Super::Attack();
 }

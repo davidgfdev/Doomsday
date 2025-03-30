@@ -1,11 +1,11 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
+#include "Tree.h"
 #include "Kismet/GameplayStatics.h"
 #include "../Source/ASCENDENTE/ASCENDENTEGameModeBase.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "../Source/ASCENDENTE/Characters/Sen/Sen.h"
-#include "Tree.h"
 
 void ATree::HandleDeath()
 {

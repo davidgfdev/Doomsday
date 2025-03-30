@@ -53,8 +53,9 @@ void UHealthComponent::DamageTaken(AActor *DamagedActor, float Damage, const UDa
 	if (GetOwner()->IsA(ASen::StaticClass())) 
 	{
 		Cast<ASen>(GetOwner())->UpdateHealth(Health);
+		Cast<ASen>(GetOwner())->MakeDamageEffect();
 	}
-	
+		
 
 	if (GetOwner()->IsA(AEnemy::StaticClass())){
 		Cast<AEnemy>(GetOwner())->ReactToHit();
