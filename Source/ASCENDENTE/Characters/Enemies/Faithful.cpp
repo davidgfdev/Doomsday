@@ -23,7 +23,7 @@ void AFaithful::Attack()
     TArray<AActor *> IgnoreActors;
     IgnoreActors.Add(this);
     auto DamageType = UDamageType::StaticClass();
-    UGameplayStatics::ApplyRadialDamage(GetWorld(), Damage, ProjectileSpawnPoint->GetComponentLocation(), AttackRadius, DamageType, IgnoreActors, this);
+    UGameplayStatics::ApplyRadialDamage(GetWorld(), Damage, ProjectileSpawnPoint->GetComponentLocation(), AttackRadius, DamageType, IgnoreActors, this, (AController*)0, true);
 
     Super::Attack();
 }

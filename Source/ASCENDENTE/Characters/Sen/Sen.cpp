@@ -57,12 +57,12 @@ void ASen::BeginPlay()
 
 	if (Weapons.Num() > 0)
 	{
-		Weapon->SetChildActorClass(Weapons[0]);
+		Weapon->SetChildActorClass(Weapons[1]);
 	}
 
 	OriginalMaxSpeed = GetCharacterMovement()->GetMaxSpeed();
 
-	CurrentAmmo = MaxAmmo;
+	CurrentAmmo = 0;
 	UpdateAmmo(CurrentAmmo);
 
 	CurrentSpeed = StandardSpeed;

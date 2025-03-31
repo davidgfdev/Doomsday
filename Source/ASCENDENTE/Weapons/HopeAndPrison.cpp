@@ -29,21 +29,23 @@ void AHopeAndPrison::ShootPrimary()
 
             FCollisionQueryParams QueryParams;
             QueryParams.AddIgnoredActor(this);
-            QueryParams.AddIgnoredActor(GetOwner());
+            if (GetOwner()) {
+                QueryParams.AddIgnoredActor(GetOwner());
 
-            GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
-            
-            if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
-            {
-                auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
-                auto DamageType = UDamageType::StaticClass();
+                GetWorld()->LineTraceSingleByChannel(Hit, TraceStart, TraceEnd, TraceChannelProperty, QueryParams);
 
-                UGameplayStatics::ApplyDamage(Hit.GetActor(), FireDamage, MyOwnerInstigator, this, DamageType);
-                OnEnemyConnect(Hit.GetActor()->GetActorLocation());
-
-                if (Hit.GetActor()->IsA(AEnemy::StaticClass())) 
+                if (Hit.bBlockingHit && IsValid(Hit.GetActor()))
                 {
-                    Cast<AEnemy>(Hit.GetActor())->DoKnockback();
+                    auto MyOwnerInstigator = GetOwner()->GetInstigatorController();
+                    auto DamageType = UDamageType::StaticClass();
+
+                    UGameplayStatics::ApplyDamage(Hit.GetActor(), FireDamage, MyOwnerInstigator, this, DamageType);
+                    OnEnemyConnect(Hit.GetActor()->GetActorLocation());
+
+                    if (Hit.GetActor()->IsA(AEnemy::StaticClass()))
+                    {
+                        Cast<AEnemy>(Hit.GetActor())->DoKnockback();
+                    }
                 }
             }
         }

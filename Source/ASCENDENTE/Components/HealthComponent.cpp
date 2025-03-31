@@ -67,9 +67,9 @@ void UHealthComponent::DamageTaken(AActor *DamagedActor, float Damage, const UDa
 	}
 }
 
-void UHealthComponent::Heal(float Ammount)
+void UHealthComponent::Heal(float Amount)
 {
-	Health += Ammount;
+	Health += Amount;
 	if (Health > MaxHealth)
 	{
 		Health = MaxHealth;
