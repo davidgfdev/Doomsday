@@ -1,5 +1,5 @@
 /FI "E:\Program Files\UE_5.4\Engine\Plugins\Online\OnlineServices\Intermediate\Build\Win64\x64\UnrealEditor\Development\OnlineServicesCommon\Definitions.OnlineServicesCommon.h" 
-/FI "D:\Proyectos\UE5\ASCENDENTE\Intermediate\Build\Win64\x64\ASCENDENTEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h" 
+/FI "E:\Proyectos\ASCENDENTE\Intermediate\Build\Win64\x64\ASCENDENTEEditor\Development\CoreUObject\SharedPCH.CoreUObject.Cpp20.h" 
 /I "E:\Program Files\UE_5.4\Engine\Source" 
 /I "E:\Program Files\UE_5.4\Engine\Plugins\Online\OnlineServices\Source\OnlineServicesCommon\Private" 
 /I "E:\Program Files\UE_5.4\Engine\Intermediate\Build\Win64\UnrealEditor\Inc\Core\UHT" 

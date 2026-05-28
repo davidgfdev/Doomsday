@@ -1,41 +1,233 @@
 [
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.Build.cs",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.Build.cs",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.cpp",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.h",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTE.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.cpp",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.cpp",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	},
 	{
-		"file": "D:\\Proyectos\\UE5\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.h",
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\ASCENDENTEGameModeBase.h",
 		"arguments": [
 			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
-			"@D:\\Proyectos\\UE5\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\BasicCharacter.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\BasicCharacter.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Enemies\\Enemy.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Enemies\\Enemy.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Sen\\Sen.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Sen\\Sen.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Sen\\SenCameraManager.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Sen\\SenCameraManager.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Sen\\SenController.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Characters\\Sen\\SenController.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Components\\HealthComponent.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Components\\HealthComponent.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Projectiles\\NihilistProjectile.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Projectiles\\NihilistProjectile.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Projectiles\\OrbProjectile.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Projectiles\\OrbProjectile.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Projectiles\\ProjectileBase.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Projectiles\\ProjectileBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Weapons\\HopeAndPrison.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Weapons\\HopeAndPrison.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Weapons\\Nihilist.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Weapons\\Nihilist.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Weapons\\WeaponBase.cpp",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
+		],
+		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
+	},
+	{
+		"file": "E:\\Proyectos\\ASCENDENTE\\Source\\ASCENDENTE\\Weapons\\WeaponBase.h",
+		"arguments": [
+			"C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe",
+			"@E:\\Proyectos\\ASCENDENTE\\.vscode\\compileCommands_Default\\ASCENDENTE.1.rsp"
 		],
 		"directory": "E:\\Program Files\\UE_5.4\\Engine\\Source"
 	}
